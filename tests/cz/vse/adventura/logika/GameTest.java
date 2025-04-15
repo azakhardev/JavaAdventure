@@ -10,11 +10,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * Testovací třída HraTest slouží ke komplexnímu otestování
  * třídy Hra
  *
- * @author    Jarmila Pavlíčková
- * @version  pro školní rok 2016/2017
+ * @author Jarmila Pavlíčková
+ * @version pro školní rok 2016/2017
  */
-public class HraTest {
-    private Hra hra1;
+public class GameTest {
+    private Game game1;
 
     //== Datové atributy (statické i instancí)======================================
 
@@ -30,7 +30,7 @@ public class HraTest {
      */
     @BeforeEach
     public void setUp() {
-        hra1 = new Hra();
+        game1 = new Game();
     }
 
     /***************************************************************************
@@ -49,18 +49,18 @@ public class HraTest {
      * a v jaké aktuální místnosti se hráč nachází.
      * Při dalším rozšiřování hry doporučujeme testovat i jaké věci nebo osoby
      * jsou v místnosti a jaké věci jsou v batohu hráče.
-     * 
+     *
      */
     @Test
     public void testPrubehHry() {
-        assertEquals("domeček", hra1.getHerniPlan().getAktualniProstor().getNazev());
-        hra1.zpracujPrikaz("jdi les");
-        assertEquals(false, hra1.konecHry());
-        assertEquals("les", hra1.getHerniPlan().getAktualniProstor().getNazev());
-        hra1.zpracujPrikaz("jdi hluboký_les");
-        assertEquals(false, hra1.konecHry());
-        assertEquals("hluboký_les", hra1.getHerniPlan().getAktualniProstor().getNazev());
-        hra1.zpracujPrikaz("konec");
-        assertEquals(true, hra1.konecHry());
+        assertEquals("domeček", game1.getGamePlan().getAktualniProstor().getName());
+        game1.processCommand("jdi les");
+        assertEquals(false, game1.isGameEnded());
+        assertEquals("les", game1.getGamePlan().getAktualniProstor().getName());
+        game1.processCommand("jdi hluboký_les");
+        assertEquals(false, game1.isGameEnded());
+        assertEquals("hluboký_les", game1.getGamePlan().getAktualniProstor().getName());
+        game1.processCommand("konec");
+        assertEquals(true, game1.isGameEnded());
     }
 }

@@ -1,25 +1,25 @@
 package cz.vse.adventura.logika.items;
 
 public abstract class Item {
-    private String Name;
-    private int Volume;
-    private int Amount;
-    private boolean Lootable;
+    private String name;
+    private int volume;
+    private int amount;
+    private boolean lootable;
 
     public String getName() {
-        return Name;
+        return this.name;
     }
 
     public int getVolume() {
-        return Volume;
+        return this.volume;
     }
 
     public int getAmount() {
-        return Amount;
+        return this.amount;
     }
 
     public boolean isLootable() {
-        return Lootable;
+        return this.lootable;
     }
 
     public abstract void useItem();
