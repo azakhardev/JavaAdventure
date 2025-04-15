@@ -1,5 +1,8 @@
 package cz.vse.adventura.logika;
 
+import cz.vse.adventura.logika.commands.PrikazJdi;
+import cz.vse.adventura.logika.commands.PrikazKonec;
+import cz.vse.adventura.logika.commands.SeznamPrikazu;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

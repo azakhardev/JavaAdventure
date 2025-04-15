@@ -1,4 +1,7 @@
-package cz.vse.adventura.logika;
+package cz.vse.adventura.logika.commands;
+
+import cz.vse.adventura.logika.HerniPlan;
+import cz.vse.adventura.logika.Prostor;
 
 /**
  *  Třída PrikazJdi implementuje pro hru příkaz jdi.
@@ -7,7 +10,7 @@ package cz.vse.adventura.logika;
  *@author     Jarmila Pavlickova, Luboš Pavlíček
  *@version    pro školní rok 2016/2017
  */
-class PrikazJdi implements IPrikaz {
+public class PrikazJdi implements IPrikaz {
     private static final String NAZEV = "jdi";
     private HerniPlan plan;
     

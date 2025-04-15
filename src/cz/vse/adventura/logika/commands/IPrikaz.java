@@ -1,4 +1,4 @@
-package cz.vse.adventura.logika;
+package cz.vse.adventura.logika.commands;
 
 /**
  *  Třída implementující toto rozhraní bude ve hře zpracovávat jeden konkrétní příkaz.
@@ -8,7 +8,7 @@ package cz.vse.adventura.logika;
  *@version    pro školní rok 2016/2017
  *  
  */
-interface IPrikaz {
+public interface IPrikaz {
 	
 	/**
      *  Metoda pro provedení příkazu ve hře.

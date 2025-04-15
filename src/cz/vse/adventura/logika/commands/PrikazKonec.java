@@ -1,4 +1,6 @@
-package cz.vse.adventura.logika;
+package cz.vse.adventura.logika.commands;
+
+import cz.vse.adventura.logika.Hra;
 
 /**
  *  Třída PrikazKonec implementuje pro hru příkaz konec.
@@ -9,7 +11,7 @@ package cz.vse.adventura.logika;
  *  
  */
 
-class PrikazKonec implements IPrikaz {
+public class PrikazKonec implements IPrikaz {
 
     private static final String NAZEV = "konec";
 

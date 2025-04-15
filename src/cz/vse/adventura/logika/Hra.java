@@ -1,5 +1,7 @@
 package cz.vse.adventura.logika;
 
+import cz.vse.adventura.logika.commands.*;
+
 /**
  *  Třída Hra - třída představující logiku adventury.
  * 
@@ -86,7 +88,7 @@ public class Hra implements IHra {
      *  
      *  @param  konecHry  hodnota false= konec hry, true = hra pokračuje
      */
-    void setKonecHry(boolean konecHry) {
+    public void setKonecHry(boolean konecHry) {
         this.konecHry = konecHry;
     }
     

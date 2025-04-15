@@ -1,4 +1,6 @@
-package cz.vse.adventura.logika;
+package cz.vse.adventura.logika.commands;
+
+import cz.vse.adventura.logika.commands.SeznamPrikazu;
 
 /**
  *  Třída PrikazNapoveda implementuje pro hru příkaz napoveda.
@@ -8,7 +10,7 @@ package cz.vse.adventura.logika;
  *@version    pro školní rok 2016/2017
  *  
  */
-class PrikazNapoveda implements IPrikaz {
+public class PrikazNapoveda implements IPrikaz {
     
     private static final String NAZEV = "nápověda";
     private SeznamPrikazu platnePrikazy;
