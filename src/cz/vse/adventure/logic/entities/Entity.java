@@ -17,5 +17,7 @@ public abstract class Entity {
         return description;
     }
 
-    public abstract String interact(Item item);
+    public abstract String interact();
+
+    public abstract String applyItem(Item item);
 }

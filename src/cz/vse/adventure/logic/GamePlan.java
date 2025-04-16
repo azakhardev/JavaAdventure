@@ -18,7 +18,6 @@ public class GamePlan {
 
     private Room aktualniRoom;
 
-
     /**
      * Konstruktor který vytváří jednotlivé prostory a propojuje je pomocí východů.
      * Jako výchozí aktuální prostor nastaví halu.
@@ -70,5 +69,4 @@ public class GamePlan {
     public void setAktualniProstor(Room room) {
         aktualniRoom = room;
     }
-
 }
