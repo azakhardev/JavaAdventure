@@ -1,4 +1,4 @@
-package cz.vse.adventura.logika.commands;
+package cz.vse.adventure.logic.commands;
 
 /**
  * Třída implementující toto rozhraní bude ve hře zpracovávat jeden konkrétní příkaz.

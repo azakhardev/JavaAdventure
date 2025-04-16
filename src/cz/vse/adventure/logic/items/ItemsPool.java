@@ -1,4 +1,4 @@
-package cz.vse.adventura.logika.items;
+package cz.vse.adventure.logic.items;
 
 import java.util.ArrayList;
 import java.util.Arrays;

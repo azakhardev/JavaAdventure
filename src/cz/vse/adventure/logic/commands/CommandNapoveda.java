@@ -1,4 +1,4 @@
-package cz.vse.adventura.logika.commands;
+package cz.vse.adventure.logic.commands;
 
 /**
  * Třída PrikazNapoveda implementuje pro hru příkaz napoveda.

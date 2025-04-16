@@ -1,4 +1,4 @@
-package cz.vse.adventura.logika;
+package cz.vse.adventure.logic;
 
 
 /**

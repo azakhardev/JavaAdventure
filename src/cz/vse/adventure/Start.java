@@ -1,11 +1,11 @@
 /* Soubor je ulozen v kodovani UTF-8.
  * Kontrola kódování: Příliš žluťoučký kůň úpěl ďábelské ódy. */
-package cz.vse.adventura;
+package cz.vse.adventure;
 
 
-import cz.vse.adventura.logika.Game;
-import cz.vse.adventura.logika.IGame;
-import cz.vse.adventura.uiText.TextInterface;
+import cz.vse.adventure.logic.Game;
+import cz.vse.adventure.logic.IGame;
+import cz.vse.adventure.uiText.TextInterface;
 
 /*******************************************************************************
  * Třída  Start je hlavní třídou projektu,

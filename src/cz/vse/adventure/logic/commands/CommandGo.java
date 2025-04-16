@@ -1,7 +1,7 @@
-package cz.vse.adventura.logika.commands;
+package cz.vse.adventure.logic.commands;
 
-import cz.vse.adventura.logika.GamePlan;
-import cz.vse.adventura.logika.Room;
+import cz.vse.adventure.logic.GamePlan;
+import cz.vse.adventure.logic.Room;
 
 /**
  * Třída PrikazJdi implementuje pro hru příkaz jdi.

@@ -1,8 +1,8 @@
-package cz.vse.adventura.logika;
+package cz.vse.adventure.logic;
 
-import cz.vse.adventura.logika.commands.CommandGo;
-import cz.vse.adventura.logika.commands.CommandEnd;
-import cz.vse.adventura.logika.commands.CommandsList;
+import cz.vse.adventure.logic.commands.CommandGo;
+import cz.vse.adventure.logic.commands.CommandEnd;
+import cz.vse.adventure.logic.commands.CommandsList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

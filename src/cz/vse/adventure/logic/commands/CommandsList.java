@@ -1,4 +1,4 @@
-package cz.vse.adventura.logika.commands;
+package cz.vse.adventure.logic.commands;
 
 import java.util.HashMap;
 import java.util.Map;

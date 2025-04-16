@@ -1,6 +1,6 @@
-package cz.vse.adventura.logika;
+package cz.vse.adventure.logic;
 
-import cz.vse.adventura.logika.commands.*;
+import cz.vse.adventure.logic.commands.*;
 
 /**
  * Třída Hra - třída představující logiku adventury.

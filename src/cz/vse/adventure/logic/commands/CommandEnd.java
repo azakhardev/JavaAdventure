@@ -1,6 +1,6 @@
-package cz.vse.adventura.logika.commands;
+package cz.vse.adventure.logic.commands;
 
-import cz.vse.adventura.logika.Game;
+import cz.vse.adventure.logic.Game;
 
 /**
  * Třída PrikazKonec implementuje pro hru příkaz konec.

@@ -1,9 +1,9 @@
-package cz.vse.adventura.uiText;
+package cz.vse.adventure.uiText;
 
 
 import java.util.Scanner;
 
-import cz.vse.adventura.logika.IGame;
+import cz.vse.adventure.logic.IGame;
 
 /**
  * Class TextoveRozhrani

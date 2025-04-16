@@ -1,4 +1,4 @@
-package cz.vse.adventura.logika;
+package cz.vse.adventure.logic;
 
 import java.util.Collection;
 import java.util.Collections;
