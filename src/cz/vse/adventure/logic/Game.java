@@ -1,6 +1,8 @@
 package cz.vse.adventure.logic;
 
 import cz.vse.adventure.logic.commands.*;
+import cz.vse.adventure.logic.entities.Player;
+import cz.vse.adventure.logic.items.Backpack;
 
 /**
  * Třída Hra - třída představující logiku adventury.
@@ -18,21 +20,25 @@ public class Game implements IGame {
     private CommandsList validCommands;    // obsahuje seznam přípustných příkazů
     private GamePlan gamePlan;
     private boolean gameEnd = false;
+    private Player player;
 
     /**
      * Vytváří hru a inicializuje místnosti (prostřednictvím třídy HerniPlan) a seznam platných příkazů.
      */
     public Game() {
+        player = new Player(new Backpack(6));
         gamePlan = new GamePlan();
         validCommands = new CommandsList();
         validCommands.insertCommand(new CommandNapoveda(validCommands));
         validCommands.insertCommand(new CommandGo(gamePlan));
         validCommands.insertCommand(new CommandEnd(this));
+        validCommands.insertCommand(new CommandInventory(this.player));
     }
 
     /**
      * Vrátí úvodní zprávu pro hráče.
      */
+
     public String getGreeting() {
         return "Vítejte!\n" +
                 "Toto je příběh o Červené Karkulce, babičce a vlkovi.\n" +

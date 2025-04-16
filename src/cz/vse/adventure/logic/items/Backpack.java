@@ -1,5 +1,7 @@
 package cz.vse.adventure.logic.items;
 
+import cz.vse.adventure.logic.Room;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +13,18 @@ public class Backpack {
         this.capacity = capacity;
     }
 
+    public int getCapacity() {
+        return this.capacity;
+    }
+
+    public List<Item> getItems() {
+        return this.items;
+    }
+
+    /**
+     * Metoda uloží předaný Item do batohu
+     * @param item věc, kterou chceme od batohu uložit
+     * */
     public boolean storeItem(Item item) {
         int itemVolume = item.getVolume();
 
@@ -22,17 +36,25 @@ public class Backpack {
         return false;
     }
 
-    public int getCapacity() {
-        return this.capacity;
+    public String dropItem(Item item, Room room) {
+        //TODO: Add item to room, then delete it from backpack
+        deleteItem(item);
+        return "";
+    }
+
+    public boolean deleteItem(Item item) {
+        items.remove(item);
+        return items.contains(item);
     }
 
     public int getUsedCapacity() {
         int usedCapacity = 0;
 
         for (Item item : items) {
-            usedCapacity += item.getAmount();
+            usedCapacity += item.getVolume();
         }
 
         return usedCapacity;
     }
+
 }

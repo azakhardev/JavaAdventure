@@ -33,7 +33,6 @@ public class TextInterface {
      */
     public void play() {
         System.out.println(game.getGreeting());
-
         // základní cyklus programu - opakovaně se čtou příkazy a poté
         // se provádějí do konce hry.
 

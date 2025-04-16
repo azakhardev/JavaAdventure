@@ -1,10 +1,9 @@
 package cz.vse.adventure.logic;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Set;
-import java.util.HashSet;
-import java.util.List;
+import cz.vse.adventure.logic.entities.Entity;
+import cz.vse.adventure.logic.items.Item;
+
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -23,7 +22,10 @@ public class Room {
 
     private String name;
     private String description;
-    private Set<Room> exits;   // obsahuje sousední místnosti
+    private Set<Room> exits;
+    private List<Entity> entities = new ArrayList<Entity>();
+    private List<Item> spawnedItems = new ArrayList<Item>();
+
 
     /**
      * Vytvoření prostoru se zadaným popisem, např. "kuchyň", "hala", "trávník
@@ -36,7 +38,22 @@ public class Room {
     public Room(String name, String description) {
         this.name = name;
         this.description = description;
+    }
+
+    /**
+     * Vytvoření prostoru se zadaným popisem, např. "kuchyň", "hala", "trávník
+     * před domem"
+     *
+     * @param name        nazev prostoru, jednoznačný identifikátor, jedno slovo nebo
+     *                    víceslovný název bez mezer.
+     * @param description Popis prostoru.
+     * @param entities  Entity, které se budou v místnosti nacházet
+     */
+    public Room(String name, String description, List<Entity> entities) {
+        this.name = name;
+        this.description = description;
         exits = new HashSet<>();
+        this.entities = entities;
     }
 
     /**

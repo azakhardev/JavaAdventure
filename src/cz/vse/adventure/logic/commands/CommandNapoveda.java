@@ -32,8 +32,8 @@ public class CommandNapoveda implements ICommand {
      */
     @Override
     public String executeCommand(String... parametry) {
-        return "Tvým úkolem je dovést Červenou Karkulku z domečku\n"
-                + "až k babičce, která bydlí v chaloupce za lesem.\n"
+        return "Tvým úkolem je dostat se pryč z bunkru a nejlépe zjistit svou minulost\n"
+                + "Hru ovládej skrze terminál\n"
                 + "\n"
                 + "Můžeš zadat tyto příkazy:\n"
                 + platnePrikazy.getCommandsName();

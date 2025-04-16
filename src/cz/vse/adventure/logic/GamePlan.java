@@ -1,6 +1,8 @@
 package cz.vse.adventure.logic;
 
 
+import cz.vse.adventure.logic.items.Backpack;
+
 /**
  * Class HerniPlan - třída představující mapu a stav adventury.
  * <p>
@@ -16,13 +18,13 @@ public class GamePlan {
 
     private Room aktualniRoom;
 
+
     /**
      * Konstruktor který vytváří jednotlivé prostory a propojuje je pomocí východů.
      * Jako výchozí aktuální prostor nastaví halu.
      */
     public GamePlan() {
         zalozProstoryHry();
-
     }
 
     /**
