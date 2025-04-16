@@ -44,7 +44,7 @@ public class Game implements IGame {
                 "Toto je příběh o Červené Karkulce, babičce a vlkovi.\n" +
                 "Napište 'nápověda', pokud si nevíte rady, jak hrát dál.\n" +
                 "\n" +
-                gamePlan.getAktualniProstor().getLongDescription();
+                gamePlan.getCurrentRoom().getLongDescription();
     }
 
     /**

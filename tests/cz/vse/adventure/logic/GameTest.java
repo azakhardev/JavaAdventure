@@ -53,13 +53,13 @@ public class GameTest {
      */
     @Test
     public void testPrubehHry() {
-        assertEquals("domeček", game1.getGamePlan().getAktualniProstor().getName());
+        assertEquals("domeček", game1.getGamePlan().getCurrentRoom().getName());
         game1.processCommand("jdi les");
         assertEquals(false, game1.isGameEnded());
-        assertEquals("les", game1.getGamePlan().getAktualniProstor().getName());
+        assertEquals("les", game1.getGamePlan().getCurrentRoom().getName());
         game1.processCommand("jdi hluboký_les");
         assertEquals(false, game1.isGameEnded());
-        assertEquals("hluboký_les", game1.getGamePlan().getAktualniProstor().getName());
+        assertEquals("hluboký_les", game1.getGamePlan().getCurrentRoom().getName());
         game1.processCommand("konec");
         assertEquals(true, game1.isGameEnded());
     }

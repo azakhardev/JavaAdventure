@@ -42,12 +42,12 @@ public class CommandGo implements ICommand {
         String smer = params[0];
 
         // zkoušíme přejít do sousedního prostoru
-        Room sousedniRoom = plan.getAktualniProstor().getSiblingRoom(smer);
+        Room sousedniRoom = plan.getCurrentRoom().getSiblingRoom(smer);
 
         if (sousedniRoom == null) {
             return "Tam se odsud jít nedá!";
         } else {
-            plan.setAktualniProstor(sousedniRoom);
+            plan.setCurrentRoom(sousedniRoom);
             return sousedniRoom.getLongDescription();
         }
     }
