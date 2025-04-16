@@ -28,18 +28,18 @@ public class CommandGo implements ICommand {
      * existuje, vstoupí se do nového prostoru. Pokud zadaný sousední prostor
      * (východ) není, vypíše se chybové hlášení.
      *
-     * @param parametry - jako  parametr obsahuje jméno prostoru (východu),
+     * @param params - jako  parametr obsahuje jméno prostoru (východu),
      *                  do kterého se má jít.
      * @return zpráva, kterou vypíše hra hráči
      */
     @Override
-    public String executeCommand(String... parametry) {
-        if (parametry.length == 0) {
+    public String executeCommand(String... params) {
+        if (params.length == 0) {
             // pokud chybí druhé slovo (sousední prostor), tak ....
             return "Kam mám jít? Musíš zadat jméno východu";
         }
 
-        String smer = parametry[0];
+        String smer = params[0];
 
         // zkoušíme přejít do sousedního prostoru
         Room sousedniRoom = plan.getAktualniProstor().getSiblingRoom(smer);

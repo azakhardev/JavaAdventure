@@ -5,9 +5,17 @@ import cz.vse.adventure.logic.items.Item;
 import java.util.Objects;
 
 public abstract class Entity {
-    public String name;
+    private String name;
 
-    public String description;
+    private String description;
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 
     public abstract String interact(Item item);
 }

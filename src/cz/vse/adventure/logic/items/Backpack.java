@@ -21,6 +21,15 @@ public class Backpack {
         return this.items;
     }
 
+    public Item getItemWithName(String name) {
+        for (Item item : items) {
+            if (item.getName().equals(name)) {
+                return item;
+            }
+        }
+        return null;
+    }
+
     /**
      * Metoda uloží předaný Item do batohu
      * @param item věc, kterou chceme od batohu uložit
@@ -28,7 +37,7 @@ public class Backpack {
     public boolean storeItem(Item item) {
         int itemVolume = item.getVolume();
 
-        if (itemVolume <= this.capacity - this.getUsedCapacity()) {
+        if (itemVolume <= this.capacity - this.getUsedCapacity() && item.isLootable()) {
             items.add(item);
             return true;
         }

@@ -12,13 +12,13 @@ public interface ICommand {
     /**
      * Metoda pro provedení příkazu ve hře.
      * Počet parametrů je závislý na konkrétním příkazu,
-     * např. příkazy konec a napoveda nemají parametry
+     * např. příkazy konec a napoveda nemají params
      * příkazy jdi, seber, polož mají jeden parametr
-     * příkaz pouzij může mít dva parametry.
+     * příkaz pouzij může mít dva params.
      *
-     * @param parametry počet parametrů závisí na konkrétním příkazu.
+     * @param params počet parametrů závisí na konkrétním příkazu.
      */
-    public String executeCommand(String... parametry);
+    public String executeCommand(String... params);
 
     /**
      * Metoda vrací název příkazu (slovo které používá hráč pro jeho vyvolání)

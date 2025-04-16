@@ -31,7 +31,7 @@ public class CommandNapoveda implements ICommand {
      * @return napoveda ke hre
      */
     @Override
-    public String executeCommand(String... parametry) {
+    public String executeCommand(String... params) {
         return "Tvým úkolem je dostat se pryč z bunkru a nejlépe zjistit svou minulost\n"
                 + "Hru ovládej skrze terminál\n"
                 + "\n"

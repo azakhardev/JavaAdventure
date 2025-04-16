@@ -5,7 +5,7 @@ import cz.vse.adventure.logic.Room;
 
 public class CommandInterract implements ICommand {
 
-    public static final String NAME = "interract";
+    private static final String NAME = "interract";
     public GamePlan plan;
 
     public CommandInterract(GamePlan plan) {
@@ -13,12 +13,12 @@ public class CommandInterract implements ICommand {
     }
 
     @Override
-    public String executeCommand(String... parametry) {
+    public String executeCommand(String... params) {
         return "";
     }
 
     @Override
     public String getName() {
-        return "";
+        return NAME;
     }
 }

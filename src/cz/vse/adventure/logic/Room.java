@@ -24,7 +24,7 @@ public class Room {
     private String description;
     private Set<Room> exits;
     private List<Entity> entities = new ArrayList<Entity>();
-    private List<Item> spawnedItems = new ArrayList<Item>();
+    private List<Item> items = new ArrayList<Item>();
 
 
     /**
@@ -47,7 +47,7 @@ public class Room {
      * @param name        nazev prostoru, jednoznačný identifikátor, jedno slovo nebo
      *                    víceslovný název bez mezer.
      * @param description Popis prostoru.
-     * @param entities  Entity, které se budou v místnosti nacházet
+     * @param entities    Entity, které se budou v místnosti nacházet
      */
     public Room(String name, String description, List<Entity> entities) {
         this.name = name;
@@ -69,6 +69,23 @@ public class Room {
         exits.add(vedlejsi);
     }
 
+    public List<Entity> getEntities() {
+        return this.entities;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public Entity getEntityWithName(String name) {
+        for (Entity e : entities) {
+            if (e.name.equals(name)) {
+                return e;
+            }
+        }
+        return null;
+    }
+
     /**
      * Metoda equals pro porovnání dvou prostorů. Překrývá se metoda equals ze
      * třídy Object. Dva prostory jsou shodné, pokud mají stejný název. Tato
@@ -79,6 +96,8 @@ public class Room {
      * @param o object, který se má porovnávat s aktuálním
      * @return hodnotu true, pokud má zadaný prostor stejný název, jinak false
      */
+
+
     @Override
     public boolean equals(Object o) {
         // porovnáváme zda se nejedná o dva odkazy na stejnou instanci

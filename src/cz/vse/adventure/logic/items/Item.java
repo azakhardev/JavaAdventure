@@ -9,7 +9,6 @@ public abstract class Item {
     private boolean lootable;
 
     public Item(String name, String description, int volume) {
-
         this.name = name;
         this.description = description;
         this.volume = volume;
@@ -32,5 +31,5 @@ public abstract class Item {
         return this.lootable;
     }
 
-    public abstract void useItem(Entity entity);
+    public abstract String useItem(Entity entity);
 }

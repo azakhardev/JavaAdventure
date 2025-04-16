@@ -33,8 +33,8 @@ public class CommandEnd implements ICommand {
      */
 
     @Override
-    public String executeCommand(String... parametry) {
-        if (parametry.length > 0) {
+    public String executeCommand(String... params) {
+        if (params.length > 0) {
             return "Ukončit co? Nechápu, proč jste zadal druhé slovo.";
         } else {
             game.setGameEnd(true);
