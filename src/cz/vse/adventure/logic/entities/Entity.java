@@ -9,6 +9,12 @@ public abstract class Entity {
 
     private String description;
 
+
+    public Entity(String name, String descripton) {
+        this.name = name;
+        this.description = descripton;
+    }
+
     public String getName() {
         return name;
     }

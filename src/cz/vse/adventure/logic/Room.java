@@ -152,7 +152,7 @@ public class Room {
      * @return Dlouhý popis prostoru
      */
     public String getLongDescription() {
-        return "You are in room " + name + ":" + description + ".\n"
+        return "You are in room " + name + ": " + description + ".\n"
                 + getExitsDescription();
     }
 

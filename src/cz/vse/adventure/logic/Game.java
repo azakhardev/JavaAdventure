@@ -33,6 +33,7 @@ public class Game implements IGame {
         validCommands.insertCommand(new CommandGo(gamePlan));
         validCommands.insertCommand(new CommandEnd(this));
         validCommands.insertCommand(new CommandInventory(this.player));
+        validCommands.insertCommand(new CommandDescription(gamePlan));
     }
 
     /**

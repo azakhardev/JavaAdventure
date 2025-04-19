@@ -63,6 +63,7 @@ public class GamePlan {
         engineRoom.setExit(serverRoom);
         serverRoom.setExit(engineRoom);
         serverRoom.setExit(administration);
+        administration.setExit(serverRoom);
         outpost.setExit(greenhouse);
         outpost.setExit(catacombs);
         outpost.setExit(shaft);

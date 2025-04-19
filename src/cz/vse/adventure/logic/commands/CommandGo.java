@@ -29,37 +29,39 @@ public class CommandGo implements ICommand {
      * (východ) není, vypíše se chybové hlášení.
      *
      * @param params - jako  parametr obsahuje jméno prostoru (východu),
-     *                  do kterého se má jít.
+     *               do kterého se má jít.
      * @return zpráva, kterou vypíše hra hráči
      */
     @Override
     public String executeCommand(String... params) {
         if (params.length == 0) {
             // pokud chybí druhé slovo (sousední prostor), tak ....
-            return "Kam mám jít? Musíš zadat jméno východu";
+            return "Where do you want to go? write the name of an exit: go <exit_name>";
         }
 
-        String smer = params[0];
+        String direction = params[0];
 
         // zkoušíme přejít do sousedního prostoru
-        Room sousedniRoom = plan.getCurrentRoom().getSiblingRoom(smer);
+        Room siblingRoom = plan.getCurrentRoom().getSiblingRoom(direction);
 
-        if (sousedniRoom == null) {
-            return "Tam se odsud jít nedá!";
+        if (plan.getCurrentRoom().getEntities().stream().anyMatch(r -> r.blockedRoom.hashCode() == siblingRoom.hashCode())) {
+        }
+
+        if (siblingRoom == null) {
+            return "You can't go there!";
         } else {
-            plan.setCurrentRoom(sousedniRoom);
-            return sousedniRoom.getLongDescription();
+            plan.setCurrentRoom(siblingRoom);
+            return siblingRoom.getLongDescription();
         }
     }
 
     /**
      * Metoda vrací název příkazu (slovo které používá hráč pro jeho vyvolání)
      *
-     * @ return nazev prikazu
+     * @return nazev prikazu
      */
     @Override
     public String getName() {
         return NAME;
     }
-
 }

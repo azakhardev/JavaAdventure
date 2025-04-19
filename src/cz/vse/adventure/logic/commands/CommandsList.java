@@ -17,36 +17,36 @@ import java.util.Map;
  */
 public class CommandsList {
     // mapa pro uložení přípustných příkazů
-    private Map<String, ICommand> mapaSPrikazy;
+    private Map<String, ICommand> commandsMap;
 
 
     /**
      * Konstruktor
      */
     public CommandsList() {
-        mapaSPrikazy = new HashMap<>();
+        commandsMap = new HashMap<>();
     }
 
 
     /**
      * Vkládá nový příkaz.
      *
-     * @param prikaz Instance třídy implementující rozhraní IPrikaz
+     * @param command Instance třídy implementující rozhraní IPrikaz
      */
-    public void insertCommand(ICommand prikaz) {
-        mapaSPrikazy.put(prikaz.getName(), prikaz);
+    public void insertCommand(ICommand command) {
+        commandsMap.put(command.getName(), command);
     }
 
     /**
      * Vrací odkaz na instanci třídy implementující rozhraní IPrikaz,
      * která provádí příkaz uvedený jako parametr.
      *
-     * @param retezec klíčové slovo příkazu, který chce hráč zavolat
+     * @param query klíčové slovo příkazu, který chce hráč zavolat
      * @return instance třídy, která provede požadovaný příkaz
      */
-    public ICommand returnCommand(String retezec) {
-        if (mapaSPrikazy.containsKey(retezec)) {
-            return mapaSPrikazy.get(retezec);
+    public ICommand returnCommand(String query) {
+        if (commandsMap.containsKey(query)) {
+            return commandsMap.get(query);
         } else {
             return null;
         }
@@ -60,7 +60,7 @@ public class CommandsList {
      * řetězec přípustný příkaz
      */
     public boolean isValidCommand(String retezec) {
-        return mapaSPrikazy.containsKey(retezec);
+        return commandsMap.containsKey(retezec);
     }
 
     /**
@@ -70,7 +70,7 @@ public class CommandsList {
      */
     public String getCommandsName() {
         String seznam = "";
-        for (String slovoPrikazu : mapaSPrikazy.keySet()) {
+        for (String slovoPrikazu : commandsMap.keySet()) {
             seznam += slovoPrikazu + " ";
         }
         return seznam;
