@@ -34,6 +34,10 @@ public class Game implements IGame {
         validCommands.insertCommand(new CommandEnd(this));
         validCommands.insertCommand(new CommandInventory(this.player));
         validCommands.insertCommand(new CommandDescription(gamePlan));
+        validCommands.insertCommand(new CommandInteract(gamePlan));
+        validCommands.insertCommand(new CommandLookAround(gamePlan));
+        validCommands.insertCommand(new CommandHelp(validCommands));
+        validCommands.insertCommand(new CommandUse(gamePlan, player));
     }
 
     /**
@@ -52,7 +56,7 @@ public class Game implements IGame {
      * Vrátí závěrečnou zprávu pro hráče.
      */
     public String getEpilogue() {
-        return "Dík, že jste si zahráli.  Ahoj.";
+        return "Thank you for playing!";
     }
 
     /**
@@ -82,7 +86,7 @@ public class Game implements IGame {
             ICommand prikaz = validCommands.returnCommand(slovoPrikazu);
             textKVypsani = prikaz.executeCommand(parametry);
         } else {
-            textKVypsani = "Nevím co tím myslíš? Tento příkaz neznám. ";
+            textKVypsani = "There is no such command!";
         }
         return textKVypsani;
     }
