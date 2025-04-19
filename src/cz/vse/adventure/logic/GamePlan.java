@@ -1,8 +1,6 @@
 package cz.vse.adventure.logic;
 
 
-import cz.vse.adventure.logic.items.Backpack;
-
 /**
  * Class HerniPlan - třída představující mapu a stav adventury.
  * <p>
@@ -16,39 +14,66 @@ import cz.vse.adventure.logic.items.Backpack;
  */
 public class GamePlan {
 
-    private Room aktualniRoom;
+    private Room currentRoom;
 
     /**
      * Konstruktor který vytváří jednotlivé prostory a propojuje je pomocí východů.
      * Jako výchozí aktuální prostor nastaví halu.
      */
     public GamePlan() {
-        zalozProstoryHry();
+        setupRooms();
     }
 
     /**
      * Vytváří jednotlivé prostory a propojuje je pomocí východů.
      * Jako výchozí aktuální prostor nastaví domeček.
      */
-    private void zalozProstoryHry() {
+    private void setupRooms() {
         // vytvářejí se jednotlivé prostory
-        Room domecek = new Room("domeček", "domeček, ve kterém bydlí Karkulka");
-        Room chaloupka = new Room("chaloupka", "chaloupka, ve které bydlí babička Karkulky");
-        Room jeskyne = new Room("jeskyně", "stará plesnivá jeskyně");
-        Room les = new Room("les", "les s jahodami, malinami a pramenem vody");
-        Room hlubokyLes = new Room("hluboký_les", "temný les, ve kterém lze potkat vlka");
+        Room barrack = new Room("barrack", "Your starting point. A simple room with beds and lockers once used by the facility’s staff.");
+        Room kitchen = new Room("kitchen", "Dusty counters, rusted utensils, and the smell of something long forgotten.");
+        Room storage = new Room("storage", "Old boxes, broken crates, and cobwebs. Maybe there’s still something useful left.");
+        Room office = new Room("office", "Scattered papers and flickering lights. Someone left in a hurry.");
+        Room hallway = new Room("hallway", "A dim corridor connecting various parts of the facility. Echoes make you feel uneasy.");
+        Room greenhouse = new Room("greenhouse", "Overgrown plants have taken control. Nature is reclaiming its space.");
+        Room engineRoom = new Room("engine_room", "Heavy machinery and tangled wires. Something here is still humming");
+        Room serverRoom = new Room("server_room", "Cold and silent. Racks of old servers blink with a strange rhythm.");
+        Room administration = new Room("administration", "A central control station with a blinking console. Perhaps you can access security here.");
+        Room outpost = new Room("outpost", "An elevated station with a clear view of the surroundings. Once used to keep things in... or out.");
+        Room catacombs = new Room("catacombs", "Dark tunnels beneath the facility. The air is thick, and the silence is deafening.");
+        Room shaft = new Room("shaft", "A deep vertical tunnel with a broken lift. Getting down won’t be easy.");
+        Room laboratory = new Room("lab", "Beakers, notes, and strange equipment. Experiments were conducted here... questionable ones.");
+        Room armory = new Room("armory", " Locked cases and weapon racks. If only you had the right key...");
+
 
         // přiřazují se průchody mezi prostory (sousedící prostory)
-        domecek.setExit(les);
-        les.setExit(domecek);
-        les.setExit(hlubokyLes);
-        hlubokyLes.setExit(les);
-        hlubokyLes.setExit(jeskyne);
-        hlubokyLes.setExit(chaloupka);
-        jeskyne.setExit(hlubokyLes);
-        chaloupka.setExit(hlubokyLes);
+        barrack.setExit(kitchen);
+        kitchen.setExit(barrack);
+        kitchen.setExit(storage);
+        kitchen.setExit(hallway);
+        storage.setExit(kitchen);
+        storage.setExit(office);
+        office.setExit(storage);
+        hallway.setExit(kitchen);
+        hallway.setExit(greenhouse);
+        greenhouse.setExit(hallway);
+        greenhouse.setExit(engineRoom);
+        greenhouse.setExit(outpost);
+        engineRoom.setExit(greenhouse);
+        engineRoom.setExit(serverRoom);
+        serverRoom.setExit(engineRoom);
+        serverRoom.setExit(administration);
+        outpost.setExit(greenhouse);
+        outpost.setExit(catacombs);
+        outpost.setExit(shaft);
+        outpost.setExit(laboratory);
+        catacombs.setExit(outpost);
+        shaft.setExit(outpost);
+        laboratory.setExit(outpost);
+        laboratory.setExit(armory);
+        armory.setExit(laboratory);
 
-        aktualniRoom = domecek;  // hra začíná v domečku
+        currentRoom = barrack;  // hra začíná v domečku
     }
 
     /**
@@ -57,8 +82,8 @@ public class GamePlan {
      * @return aktuální prostor
      */
 
-    public Room getAktualniProstor() {
-        return aktualniRoom;
+    public Room getCurrentRoom() {
+        return currentRoom;
     }
 
     /**
@@ -66,7 +91,7 @@ public class GamePlan {
      *
      * @param room nový aktuální prostor
      */
-    public void setAktualniProstor(Room room) {
-        aktualniRoom = room;
+    public void setCurrentRoom(Room room) {
+        this.currentRoom = room;
     }
 }

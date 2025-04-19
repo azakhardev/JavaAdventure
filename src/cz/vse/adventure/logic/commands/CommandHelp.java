@@ -7,21 +7,21 @@ package cz.vse.adventure.logic.commands;
  * @author Jarmila Pavlickova, Luboš Pavlíček
  * @version pro školní rok 2016/2017
  */
-public class CommandNapoveda implements ICommand {
+public class CommandHelp implements ICommand {
 
-    private static final String NAME = "hint";
-    private CommandsList platnePrikazy;
+    private static final String NAME = "help";
+    private final CommandsList availableCommands;
 
 
     /**
      * Konstruktor třídy
      *
-     * @param platnePrikazy seznam příkazů,
-     *                      které je možné ve hře použít,
-     *                      aby je nápověda mohla zobrazit uživateli.
+     * @param availableCommands seznam příkazů,
+     *                          které je možné ve hře použít,
+     *                          aby je nápověda mohla zobrazit uživateli.
      */
-    public CommandNapoveda(CommandsList platnePrikazy) {
-        this.platnePrikazy = platnePrikazy;
+    public CommandHelp(CommandsList availableCommands) {
+        this.availableCommands = availableCommands;
     }
 
     /**
@@ -32,11 +32,11 @@ public class CommandNapoveda implements ICommand {
      */
     @Override
     public String executeCommand(String... params) {
-        return "Tvým úkolem je dostat se pryč z bunkru a nejlépe zjistit svou minulost\n"
-                + "Hru ovládej skrze terminál\n"
+        return "Your task is to escape the bunker\n"
+                + "You control the game trough the terminal with commands\n"
                 + "\n"
-                + "Můžeš zadat tyto příkazy:\n"
-                + platnePrikazy.getCommandsName();
+                + "You can use these commands:\n"
+                + availableCommands.getCommandsName();
     }
 
     /**

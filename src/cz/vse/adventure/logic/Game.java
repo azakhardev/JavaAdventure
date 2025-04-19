@@ -29,7 +29,7 @@ public class Game implements IGame {
         player = new Player(new Backpack(6));
         gamePlan = new GamePlan();
         validCommands = new CommandsList();
-        validCommands.insertCommand(new CommandNapoveda(validCommands));
+        validCommands.insertCommand(new CommandHelp(validCommands));
         validCommands.insertCommand(new CommandGo(gamePlan));
         validCommands.insertCommand(new CommandEnd(this));
         validCommands.insertCommand(new CommandInventory(this.player));
@@ -40,9 +40,9 @@ public class Game implements IGame {
      */
 
     public String getGreeting() {
-        return "Vítejte!\n" +
-                "Toto je příběh o Červené Karkulce, babičce a vlkovi.\n" +
-                "Napište 'nápověda', pokud si nevíte rady, jak hrát dál.\n" +
+        return "Welcome!\n" +
+                "This is a story about lost man in abondoned facility, who doesn't remember his past.\n" +
+                "Write 'help', if you don't know how to play\n" +
                 "\n" +
                 gamePlan.getCurrentRoom().getLongDescription();
     }

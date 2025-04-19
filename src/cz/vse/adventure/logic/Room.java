@@ -22,7 +22,7 @@ public class Room {
 
     private String name;
     private String description;
-    private Set<Room> exits;
+    private Set<Room> exits = new HashSet<>();
     private List<Entity> entities = new ArrayList<Entity>();
     private List<Item> items = new ArrayList<Item>();
 
@@ -79,7 +79,7 @@ public class Room {
 
     public Entity getEntityWithName(String name) {
         for (Entity e : entities) {
-            if (e.name.equals(name)) {
+            if (e.getName().equals(name)) {
                 return e;
             }
         }
@@ -152,7 +152,7 @@ public class Room {
      * @return Dlouhý popis prostoru
      */
     public String getLongDescription() {
-        return "Jsi v mistnosti/prostoru " + description + ".\n"
+        return "You are in room " + name + ":" + description + ".\n"
                 + getExitsDescription();
     }
 
@@ -163,7 +163,7 @@ public class Room {
      * @return Popis východů - názvů sousedních prostorů
      */
     private String getExitsDescription() {
-        String vracenyText = "východy:";
+        String vracenyText = "exits:";
         for (Room sousedni : exits) {
             vracenyText += " " + sousedni.getName();
         }

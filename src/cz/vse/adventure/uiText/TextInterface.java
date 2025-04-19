@@ -37,8 +37,8 @@ public class TextInterface {
         // se provádějí do konce hry.
 
         while (!game.isGameEnded()) {
-            String radek = readString();
-            System.out.println(game.processCommand(radek));
+            String line = readString();
+            System.out.println(game.processCommand(line));
         }
 
         System.out.println(game.getEpilogue());

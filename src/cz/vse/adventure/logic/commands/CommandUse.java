@@ -23,7 +23,7 @@ public class CommandUse implements ICommand {
         }
 
         Item item = player.getBackpack().getItemWithName(params[0]);
-        Entity entity = plan.getAktualniProstor().getEntityWithName(params[1]);
+        Entity entity = plan.getCurrentRoom().getEntityWithName(params[1]);
 
         if (item == null) {
             return "You do not have a backpack item with that name.";
