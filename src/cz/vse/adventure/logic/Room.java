@@ -2,6 +2,7 @@ package cz.vse.adventure.logic;
 
 import cz.vse.adventure.logic.entities.Entity;
 import cz.vse.adventure.logic.entities.Obstacle;
+import cz.vse.adventure.logic.entities.Prop;
 import cz.vse.adventure.logic.items.Item;
 
 import java.util.*;
@@ -25,6 +26,7 @@ public class Room {
     private String description;
     private Set<Room> exits = new HashSet<>();
     private Map<String, Obstacle> obstacles = new HashMap<String, Obstacle>();
+    private Map<String, Prop> props = new HashMap<>();
     private Map<String, Item> items = new HashMap<String, Item>();
 
 
@@ -39,21 +41,6 @@ public class Room {
     public Room(String name, String description) {
         this.name = name;
         this.description = description;
-    }
-
-    /**
-     * Vytvoření prostoru se zadaným popisem, např. "kuchyň", "hala", "trávník
-     * před domem"
-     *
-     * @param name        nazev prostoru, jednoznačný identifikátor, jedno slovo nebo
-     *                    víceslovný název bez mezer.
-     * @param description Popis prostoru.
-     * @param entities    Entity, které se budou v místnosti nacházet
-     */
-    public Room(String name, String description, Set<Entity> entities) {
-        this.name = name;
-        this.description = description;
-        exits = new HashSet<>();
     }
 
     /**
@@ -73,22 +60,47 @@ public class Room {
         return this.obstacles;
     }
 
-//    public List<Entity> getEntities() {
-//        return this.entities;
-//    }
+    public void addObstacle(Obstacle obstacle) {
+        obstacles.put(obstacle.getName(), obstacle);
+    }
+
+    public void removeObstacle(String name) {
+        obstacles.remove(name);
+    }
+
+    public Map<String, Prop> getProps() {
+        return this.props;
+    }
+
+    public void addProp(Prop prop) {
+        props.put(prop.getName(), prop);
+    }
+
+    public void removeProp(String name) {
+        props.remove(name);
+    }
 
     public Map<String, Item> getItems() {
         return items;
     }
 
-//    public Entity getEntityWithName(String name) {
-//        for (Entity e : entities) {
-//            if (e.getName().equals(name)) {
-//                return e;
-//            }
-//        }
-//        return null;
-//    }
+    public void addItem(Item item) {
+        items.put(item.getName(), item);
+    }
+
+    public void removeItem(String name) {
+        items.remove(name);
+    }
+
+    public Entity getEntityByName(String name) {
+        if (obstacles.containsKey(name)) {
+            return obstacles.get(name);
+        }
+        if (props.containsKey(name)) {
+            return props.get(name);
+        }
+        return null;
+    }
 
     public Obstacle getObstacleByName(String name) {
         return obstacles.get(name);
