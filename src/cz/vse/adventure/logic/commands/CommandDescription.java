@@ -13,7 +13,13 @@ public class CommandDescription implements ICommand {
 
     @Override
     public String executeCommand(String... params) {
-        return gamePlan.getCurrentRoom().getLongDescription();
+
+        if (params.length == 0) {
+            return gamePlan.getCurrentRoom().getLongDescription();
+        }
+
+        return "Command 'description' does not take any parameters.";
+
     }
 
     @Override

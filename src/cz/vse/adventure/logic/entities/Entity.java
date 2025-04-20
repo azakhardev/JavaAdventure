@@ -23,6 +23,10 @@ public abstract class Entity {
         return description;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public abstract String interact();
 
     public abstract String applyItem(Item item);

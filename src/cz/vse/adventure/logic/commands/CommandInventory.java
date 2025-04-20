@@ -22,7 +22,7 @@ public class CommandInventory implements ICommand {
     public String executeCommand(String... params) {
         Backpack backpack = player.getBackpack();
 
-        if (!(params.length == 0)) {
+        if (params.length != 0) {
             return "Command inventory does not take any parameters";
         }
 

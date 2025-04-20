@@ -35,9 +35,9 @@ public class CommandGo implements ICommand {
      */
     @Override
     public String executeCommand(String... params) {
-        if (params.length == 0) {
+        if (params.length != 1) {
             // pokud chybí druhé slovo (sousední prostor), tak ....
-            return "Where do you want to go? write the name of an exit: go <exit_name>";
+            return "Where do you want to go? Usage: go <exit_name>";
         }
 
         String direction = params[0];

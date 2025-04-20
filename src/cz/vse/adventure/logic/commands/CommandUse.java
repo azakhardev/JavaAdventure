@@ -19,23 +19,23 @@ public class CommandUse implements ICommand {
     @Override
     public String executeCommand(String... params) {
         if (params.length != 2) {
-            return "Enter two parameters - what to use and on what you want to use it.";
+            return "You need to enter two parameters! Usage: interact <item_name> <entity_name>";
         }
 
         Item item = player.getBackpack().getItemWithName(params[0]);
         Entity entity = plan.getCurrentRoom().getEntityByName(params[1]);
 
         if (item == null) {
-            return "You do not have a backpack item with that name.";
+            return "You do not have an item in backpack with that name. Use command inventory to display your carried items. ";
         }
 
         if (entity == null) {
-            return "You do not have a backpack item with that name.";
+            return "There is no such entity in the room. Use command look_around to see entities in the room.";
         }
 
         item.useItem(entity);
 
-        return "";
+        return "You've use " + item.getName() + "on " + entity.getName();
     }
 
     @Override
