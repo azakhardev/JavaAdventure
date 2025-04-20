@@ -3,6 +3,7 @@ package cz.vse.adventure.logic.commands;
 import cz.vse.adventure.logic.GamePlan;
 import cz.vse.adventure.logic.Room;
 import cz.vse.adventure.logic.entities.Entity;
+import cz.vse.adventure.logic.entities.Prop;
 import cz.vse.adventure.logic.items.Item;
 
 public class CommandLookAround implements ICommand {
@@ -22,20 +23,24 @@ public class CommandLookAround implements ICommand {
         }
 
         Room currentRoom = plan.getCurrentRoom();
-        String entities = "";
-        String items = "";
+        StringBuilder entities = new StringBuilder();
+        StringBuilder items = new StringBuilder();
+        StringBuilder props = new StringBuilder();
 
         for (Entity entity : currentRoom.getObstacles().values()) {
-            entities += entity.getName() + "/n";
+            entities.append(entity.getName()).append(",");
         }
 
         for (Item item : currentRoom.getItems().values()) {
-            items += item.getName() + "/n";
+            items.append(item.getName()).append(",");
         }
 
-        return "You are looking around in room " + currentRoom + " and you see: \n"
-                + "Those obstacles: " + entities + "\n" + "Those items: " + items + "\n";
+        for (Prop prop : currentRoom.getProps().values()) {
+            props.append(prop.getName()).append(",");
+        }
 
+        return "You are looking around in room " + currentRoom.getName() + " and you see: \n"
+                + "Those obstacles: " + entities + "\n" + "Those items: " + items + "\n" + "Those objects: " + props;
     }
 
     @Override

@@ -1,6 +1,8 @@
 package cz.vse.adventure.logic;
 
 
+import cz.vse.adventure.logic.entities.Obstacle;
+
 /**
  * Class HerniPlan - třída představující mapu a stav adventury.
  * <p>
@@ -44,13 +46,20 @@ public class GamePlan {
         Room shaft = new Room("shaft", "A deep vertical tunnel with a broken lift. Getting down won’t be easy.");
         Room laboratory = new Room("lab", "Beakers, notes, and strange equipment. Experiments were conducted here... questionable ones.");
         Room armory = new Room("armory", " Locked cases and weapon racks. If only you had the right key...");
+        Room exitRoom = new Room("exit", "The exit room.");
 
+        Obstacle darkness = new Obstacle("dark_hallway", "You can't see anything through the dark hallway. You are too scared, you need a flashlight.", hallway);
+        Obstacle stuckDoor = new Obstacle("stuck_door", "The door is jammed and won't budge. Maybe a crowbar could help.", engineRoom);
+        Obstacle overgrownPlants = new Obstacle("overgrown_plants", "Thick, overgrown plants block your way. They're too dense to move through.", catacombs);
+        Obstacle fallenRocks = new Obstacle("fallen_rocks", "A pile of large fallen rocks is blocking the path to the shafts.", shaft);
+        Obstacle vaultDoor = new Obstacle("vault_door", "A massive vault door bars your way. There's a numeric keypad next to it.", exitRoom);
 
         // přiřazují se průchody mezi prostory (sousedící prostory)
         barrack.setExit(kitchen);
         kitchen.setExit(barrack);
         kitchen.setExit(storage);
         kitchen.setExit(hallway);
+        kitchen.addObstacle(darkness);
         storage.setExit(kitchen);
         storage.setExit(office);
         office.setExit(storage);
@@ -59,15 +68,20 @@ public class GamePlan {
         greenhouse.setExit(hallway);
         greenhouse.setExit(engineRoom);
         greenhouse.setExit(outpost);
+        greenhouse.addObstacle(stuckDoor);
         engineRoom.setExit(greenhouse);
         engineRoom.setExit(serverRoom);
         serverRoom.setExit(engineRoom);
         serverRoom.setExit(administration);
         administration.setExit(serverRoom);
+        administration.setExit(exitRoom);
+        administration.addObstacle(vaultDoor);
         outpost.setExit(greenhouse);
         outpost.setExit(catacombs);
         outpost.setExit(shaft);
         outpost.setExit(laboratory);
+        outpost.addObstacle(overgrownPlants);
+        outpost.addObstacle(fallenRocks);
         catacombs.setExit(outpost);
         shaft.setExit(outpost);
         laboratory.setExit(outpost);

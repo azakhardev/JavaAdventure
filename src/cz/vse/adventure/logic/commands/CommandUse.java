@@ -35,7 +35,7 @@ public class CommandUse implements ICommand {
 
         item.useItem(entity);
 
-        return "You've use " + item.getName() + "on " + entity.getName();
+        return "You've used " + item.getName() + "on " + entity.getName();
     }
 
     @Override
