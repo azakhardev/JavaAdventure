@@ -12,6 +12,10 @@ public class Obstacle extends Entity {
         this.blockedRoom = room;
     }
 
+    public Room getBlockedRoom() {
+        return blockedRoom;
+    }
+
     @Override
     public String interact() {
         return "You can't go to the " + blockedRoom.getName() + " beacuse " + this.getName() + "is blocking your way.";

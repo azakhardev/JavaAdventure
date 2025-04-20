@@ -22,12 +22,7 @@ public class CommandPick implements ICommand {
             return "Invalid number of arguments! Usage: pick <item_name>";
         }
 
-        Item item = this.gamePlan.getCurrentRoom()
-                .getItems()
-                .stream()
-                .filter(i -> i.getName().equals(params[0]))
-                .findFirst()
-                .orElse(null);
+        Item item = this.gamePlan.getCurrentRoom().getItemByName(params[0]);
 
         if (item != null) {
             if (this.backpack.storeItem(item)) {

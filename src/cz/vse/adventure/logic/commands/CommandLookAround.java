@@ -25,16 +25,16 @@ public class CommandLookAround implements ICommand {
         String entities = "";
         String items = "";
 
-        for (Entity entity : currentRoom.getEntities()) {
+        for (Entity entity : currentRoom.getObstacles().values()) {
             entities += entity.getName() + "/n";
         }
 
-        for (Item item : currentRoom.getItems()) {
+        for (Item item : currentRoom.getItems().values()) {
             items += item.getName() + "/n";
         }
 
         return "You are looking around in room " + currentRoom + " and you see: \n"
-                + "Those entities: " + entities + "\n" + "Those items: " + items + "\n";
+                + "Those obstacles: " + entities + "\n" + "Those items: " + items + "\n";
 
     }
 

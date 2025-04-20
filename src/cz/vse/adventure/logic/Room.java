@@ -1,6 +1,7 @@
 package cz.vse.adventure.logic;
 
 import cz.vse.adventure.logic.entities.Entity;
+import cz.vse.adventure.logic.entities.Obstacle;
 import cz.vse.adventure.logic.items.Item;
 
 import java.util.*;
@@ -23,8 +24,8 @@ public class Room {
     private String name;
     private String description;
     private Set<Room> exits = new HashSet<>();
-    private List<Entity> entities = new ArrayList<Entity>();
-    private List<Item> items = new ArrayList<Item>();
+    private Map<String, Obstacle> obstacles = new HashMap<String, Obstacle>();
+    private Map<String, Item> items = new HashMap<String, Item>();
 
 
     /**
@@ -49,11 +50,10 @@ public class Room {
      * @param description Popis prostoru.
      * @param entities    Entity, které se budou v místnosti nacházet
      */
-    public Room(String name, String description, List<Entity> entities) {
+    public Room(String name, String description, Set<Entity> entities) {
         this.name = name;
         this.description = description;
         exits = new HashSet<>();
-        this.entities = entities;
     }
 
     /**
@@ -69,21 +69,33 @@ public class Room {
         exits.add(vedlejsi);
     }
 
-    public List<Entity> getEntities() {
-        return this.entities;
+    public Map<String, Obstacle> getObstacles() {
+        return this.obstacles;
     }
 
-    public List<Item> getItems() {
+//    public List<Entity> getEntities() {
+//        return this.entities;
+//    }
+
+    public Map<String, Item> getItems() {
         return items;
     }
 
-    public Entity getEntityWithName(String name) {
-        for (Entity e : entities) {
-            if (e.getName().equals(name)) {
-                return e;
-            }
-        }
-        return null;
+//    public Entity getEntityWithName(String name) {
+//        for (Entity e : entities) {
+//            if (e.getName().equals(name)) {
+//                return e;
+//            }
+//        }
+//        return null;
+//    }
+
+    public Obstacle getObstacleByName(String name) {
+        return obstacles.get(name);
+    }
+
+    public Item getItemByName(String name) {
+        return items.get(name);
     }
 
     /**
@@ -109,13 +121,13 @@ public class Room {
             return false;    // pokud parametr není typu Prostor, vrátíme false
         }
         // přetypujeme parametr na typ Prostor 
-        Room druhy = (Room) o;
+        Room second = (Room) o;
 
         //metoda equals třídy java.util.Objects porovná hodnoty obou názvů. 
         //Vrátí true pro stejné názvy a i v případě, že jsou oba názvy null,
         //jinak vrátí false.
 
-        return (java.util.Objects.equals(this.name, druhy.name));
+        return (java.util.Objects.equals(this.name, second.name));
     }
 
     /**

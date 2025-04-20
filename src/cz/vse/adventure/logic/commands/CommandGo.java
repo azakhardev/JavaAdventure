@@ -2,6 +2,7 @@ package cz.vse.adventure.logic.commands;
 
 import cz.vse.adventure.logic.GamePlan;
 import cz.vse.adventure.logic.Room;
+import cz.vse.adventure.logic.entities.Obstacle;
 
 /**
  * Třída PrikazJdi implementuje pro hru příkaz jdi.
@@ -40,15 +41,24 @@ public class CommandGo implements ICommand {
         }
 
         String direction = params[0];
-
         // zkoušíme přejít do sousedního prostoru
         Room siblingRoom = plan.getCurrentRoom().getSiblingRoom(direction);
 
-        if (plan.getCurrentRoom().getEntities().stream().anyMatch(r -> r.blockedRoom.hashCode() == siblingRoom.hashCode())) {
-        }
-
         if (siblingRoom == null) {
             return "You can't go there!";
+        }
+
+        Obstacle obstacle = null;
+        for (Obstacle o : plan.getCurrentRoom().getObstacles().values()) {
+            if (o.getBlockedRoom().equals(siblingRoom)) {
+                obstacle = o;
+                break;
+            }
+        }
+
+        if (obstacle != null) {
+            return "You can't go to the room " + siblingRoom.getName() +
+                    " because it is blocked by " + obstacle.getName();
         } else {
             plan.setCurrentRoom(siblingRoom);
             return siblingRoom.getLongDescription();
