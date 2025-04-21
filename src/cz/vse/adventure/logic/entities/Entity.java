@@ -15,6 +15,7 @@ public abstract class Entity {
     public Entity(String name, String descripton, Function<Item, String> onUse) {
         this.name = name;
         this.description = descripton;
+        this.onUse = onUse;
     }
 
     public String getName() {

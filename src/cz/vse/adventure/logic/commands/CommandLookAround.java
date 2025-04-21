@@ -34,6 +34,8 @@ public class CommandLookAround implements ICommand {
 
         if (currentRoom.getObstacles().isEmpty()) {
             obstacles = new StringBuilder();
+        } else {
+            obstacles.append("\n");
         }
 
         for (Item item : currentRoom.getItems().values()) {
@@ -42,6 +44,8 @@ public class CommandLookAround implements ICommand {
 
         if (currentRoom.getItems().isEmpty()) {
             items = new StringBuilder();
+        } else {
+            items.append("\n");
         }
 
         for (Prop prop : currentRoom.getProps().values()) {
@@ -53,7 +57,7 @@ public class CommandLookAround implements ICommand {
         }
 
         return "You are looking around in room " + currentRoom.getName() + " and you see "
-                + obstacles + "\n" + items + "\n" + props;
+                + obstacles + items + props;
     }
 
     @Override
