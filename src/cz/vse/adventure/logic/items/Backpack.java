@@ -32,12 +32,14 @@ public class Backpack {
 
     /**
      * Metoda uloží předaný Item do batohu
+     *
      * @param item věc, kterou chceme od batohu uložit
-     * */
+     */
     public boolean storeItem(Item item) {
         int itemVolume = item.getVolume();
+        int freeSpace = this.capacity - this.getUsedCapacity();
 
-        if (itemVolume <= this.capacity - this.getUsedCapacity() && item.isLootable()) {
+        if ((itemVolume <= freeSpace) && item.isLootable()) {
             items.add(item);
             return true;
         }
@@ -46,7 +48,7 @@ public class Backpack {
     }
 
     public String dropItem(Item item, Room room) {
-        //TODO: Add item to room, then delete it from backpack
+        room.addItem(item);
         deleteItem(item);
         return "";
     }

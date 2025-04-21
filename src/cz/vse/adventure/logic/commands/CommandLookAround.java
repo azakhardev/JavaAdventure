@@ -3,6 +3,7 @@ package cz.vse.adventure.logic.commands;
 import cz.vse.adventure.logic.GamePlan;
 import cz.vse.adventure.logic.Room;
 import cz.vse.adventure.logic.entities.Entity;
+import cz.vse.adventure.logic.entities.Obstacle;
 import cz.vse.adventure.logic.entities.Prop;
 import cz.vse.adventure.logic.items.Item;
 
@@ -23,24 +24,36 @@ public class CommandLookAround implements ICommand {
         }
 
         Room currentRoom = plan.getCurrentRoom();
-        StringBuilder entities = new StringBuilder();
-        StringBuilder items = new StringBuilder();
-        StringBuilder props = new StringBuilder();
+        StringBuilder obstacles = new StringBuilder("that something is blocking your way to other rooms: ");
+        StringBuilder items = new StringBuilder("some items that you can get use of: ");
+        StringBuilder props = new StringBuilder("different objects that have caught your eye: ");
 
-        for (Entity entity : currentRoom.getObstacles().values()) {
-            entities.append(entity.getName()).append(",");
+        for (Obstacle obstacle : currentRoom.getObstacles().values()) {
+            obstacles.append(obstacle.getName()).append(", ");
+        }
+
+        if (currentRoom.getObstacles().isEmpty()) {
+            obstacles = new StringBuilder();
         }
 
         for (Item item : currentRoom.getItems().values()) {
-            items.append(item.getName()).append(",");
+            items.append(item.getName()).append(", ");
+        }
+
+        if (currentRoom.getItems().isEmpty()) {
+            items = new StringBuilder();
         }
 
         for (Prop prop : currentRoom.getProps().values()) {
-            props.append(prop.getName()).append(",");
+            props.append(prop.getName()).append(", ");
         }
 
-        return "You are looking around in room " + currentRoom.getName() + " and you see: \n"
-                + "Those obstacles: " + entities + "\n" + "Those items: " + items + "\n" + "Those objects: " + props;
+        if (currentRoom.getProps().isEmpty()) {
+            props = new StringBuilder();
+        }
+
+        return "You are looking around in room " + currentRoom.getName() + " and you see "
+                + obstacles + "\n" + items + "\n" + props;
     }
 
     @Override

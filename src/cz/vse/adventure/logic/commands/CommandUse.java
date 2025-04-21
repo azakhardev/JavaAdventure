@@ -3,17 +3,18 @@ package cz.vse.adventure.logic.commands;
 import cz.vse.adventure.logic.GamePlan;
 import cz.vse.adventure.logic.entities.Entity;
 import cz.vse.adventure.logic.entities.Player;
+import cz.vse.adventure.logic.items.Backpack;
 import cz.vse.adventure.logic.items.Item;
 
 public class CommandUse implements ICommand {
 
     private static final String NAME = "use";
     private GamePlan plan;
-    private Player player;
+    private Backpack backpack;
 
-    public CommandUse(GamePlan plan, Player player) {
+    public CommandUse(GamePlan plan, Backpack backpack) {
         this.plan = plan;
-        this.player = player;
+        this.backpack = backpack;
     }
 
     @Override
@@ -22,7 +23,7 @@ public class CommandUse implements ICommand {
             return "You need to enter two parameters! Usage: interact <item_name> <entity_name>";
         }
 
-        Item item = player.getBackpack().getItemWithName(params[0]);
+        Item item = backpack.getItemWithName(params[0]);
         Entity entity = plan.getCurrentRoom().getEntityByName(params[1]);
 
         if (item == null) {

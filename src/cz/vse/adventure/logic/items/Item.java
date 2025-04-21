@@ -2,19 +2,17 @@ package cz.vse.adventure.logic.items;
 
 import cz.vse.adventure.logic.entities.Entity;
 
-public abstract class Item {
+public class Item {
     private String name;
     private String description;
-    private String usableOn;
     private int volume;
     private boolean lootable;
 
-    public Item(String name, String description, int volume, String usableOn) {
+    public Item(String name, String description, int volume) {
         this.name = name;
         this.description = description;
         this.volume = volume;
-        this.usableOn = usableOn;
-        this.lootable = volume < 0;
+        this.lootable = volume >= 0;
     }
 
     public String getName() {
@@ -25,10 +23,6 @@ public abstract class Item {
         return this.volume;
     }
 
-    public String getUsableOn() {
-        return this.usableOn;
-    }
-
     public String getDescription() {
         return this.description;
     }
@@ -37,5 +31,7 @@ public abstract class Item {
         return this.lootable;
     }
 
-    public abstract String useItem(Entity entity);
+    public String useItem(Entity entity) {
+        return entity.applyItem(this);
+    }
 }

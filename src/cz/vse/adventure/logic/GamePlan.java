@@ -2,6 +2,9 @@ package cz.vse.adventure.logic;
 
 
 import cz.vse.adventure.logic.entities.Obstacle;
+import cz.vse.adventure.logic.items.Item;
+
+import java.util.Scanner;
 
 /**
  * Class HerniPlan - třída představující mapu a stav adventury.
@@ -48,18 +51,57 @@ public class GamePlan {
         Room armory = new Room("armory", " Locked cases and weapon racks. If only you had the right key...");
         Room exitRoom = new Room("exit", "The exit room.");
 
-        Obstacle darkness = new Obstacle("dark_hallway", "You can't see anything through the dark hallway. You are too scared, you need a flashlight.", hallway);
-        Obstacle stuckDoor = new Obstacle("stuck_door", "The door is jammed and won't budge. Maybe a crowbar could help.", engineRoom);
-        Obstacle overgrownPlants = new Obstacle("overgrown_plants", "Thick, overgrown plants block your way. They're too dense to move through.", catacombs);
-        Obstacle fallenRocks = new Obstacle("fallen_rocks", "A pile of large fallen rocks is blocking the path to the shafts.", shaft);
-        Obstacle vaultDoor = new Obstacle("vault_door", "A massive vault door bars your way. There's a numeric keypad next to it.", exitRoom);
+        Item fuse = new Item("fuse", "Old fuse, but still funcitonal. Can be handy.", 1);
+
+        Obstacle fuseBox = new Obstacle("fuse_box",
+                "You can't see anything through the dark hallway. You are too scared, you have to turn lights on somehow.",
+                (item) -> {
+                    if (!item.getName().equals("fuse")) {
+                        return "You can't use this item on the fuse box.";
+                    }
+                    kitchen.getObstacles().remove("fuse_box");
+                    return "You flipped the fuse. The hallway is now lit.";
+                }, hallway);
+        Obstacle stuckDoor = new Obstacle("stuck_door", "The door is jammed and won't budge. Maybe a crowbar could help.", (item) -> {
+            if (!item.getName().equals("crowbar")) {
+                return "You can't use this item on the fuse box.";
+            }
+            greenhouse.getObstacles().remove("stuck_door");
+            return "With a sharp creak and a burst of force, the crowbar pries the door loose. The way ahead is now open, though the hinges will never be the same.";
+        }, engineRoom);
+        Obstacle overgrownPlants = new Obstacle("overgrown_plants", "Thick, overgrown plants block your way. They're too dense to move through.", (item) -> {
+            if (!item.getName().equals("acid")) {
+                return "You can't use this item on the fuse box.";
+            }
+            outpost.getObstacles().remove("overgrown_plants");
+            return "You pour the corrosive mix onto the thick vines. They hiss and writhe before dissolving into a foul-smelling sludge. The path clears slowly, revealing the corridor beyond.";
+        }, catacombs);
+        Obstacle fallenRocks = new Obstacle("fallen_rocks", "A pile of large fallen rocks is blocking the path to the shafts.",
+                (item) -> {
+                    if (!item.getName().equals("dynamite")) {
+                        return "You can't use this item on the fuse box.";
+                    }
+                    outpost.getObstacles().remove("fallen_rocks");
+                    return "You light the fuse and take cover. The explosion echoes through the cavern, and when the dust settles, the blockage is gone—replaced by rubble and a newly cleared path.";
+                }, shaft);
+        Obstacle vaultDoor = new Obstacle("vault_door", "A massive vault door bars your way. There's a numeric keypad next to it.", (item) -> {
+            System.out.println("Please, enter the code:");
+
+            Scanner scanner = new Scanner(System.in);
+            if (scanner.nextLine().equals("1234")) {
+                administration.getObstacles().remove("stuck_door");
+                return "The keypad beeps in approval. Heavy mechanisms shift behind the steel as the vault door unlocks with a deep, resonant thud. You are finally free from this long forgotten maze...";
+            }
+            return "The password is wrong.";
+        }, exitRoom);
 
         // přiřazují se průchody mezi prostory (sousedící prostory)
         barrack.setExit(kitchen);
+        barrack.addItem(fuse);
         kitchen.setExit(barrack);
         kitchen.setExit(storage);
         kitchen.setExit(hallway);
-        kitchen.addObstacle(darkness);
+        kitchen.addObstacle(fuseBox);
         storage.setExit(kitchen);
         storage.setExit(office);
         office.setExit(storage);
@@ -87,7 +129,6 @@ public class GamePlan {
         laboratory.setExit(outpost);
         laboratory.setExit(armory);
         armory.setExit(laboratory);
-
         currentRoom = barrack;  // hra začíná v domečku
     }
 

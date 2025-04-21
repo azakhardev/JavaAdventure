@@ -37,7 +37,9 @@ public class Game implements IGame {
         validCommands.insertCommand(new CommandInteract(gamePlan));
         validCommands.insertCommand(new CommandLookAround(gamePlan));
         validCommands.insertCommand(new CommandHelp(validCommands));
-        validCommands.insertCommand(new CommandUse(gamePlan, player));
+        validCommands.insertCommand(new CommandUse(gamePlan, player.getBackpack()));
+        validCommands.insertCommand(new CommandPick(gamePlan, player.getBackpack()));
+        validCommands.insertCommand(new CommandDrop(gamePlan, player.getBackpack()));
     }
 
     /**

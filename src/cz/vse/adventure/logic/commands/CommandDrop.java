@@ -31,7 +31,7 @@ public class CommandDrop implements ICommand {
             return "You don't have this item.";
         }
 
-        currentRoom.addItem(item);
+        this.backpack.dropItem(item, currentRoom);
 
         return "You dropped the " + item.getName() + " in room " + currentRoom.getName();
     }
