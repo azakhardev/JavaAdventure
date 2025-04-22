@@ -52,9 +52,10 @@ public class GamePlan {
         Room exitRoom = new Room("exit", "The exit room.");
 
         Item fuse = new Item("fuse", "Old fuse, but still funcitonal. Can be handy.", 1);
+        Item rock = new Item("rock", "Giant rock, you can't pick it up", 7);
 
         Obstacle fuseBox = new Obstacle("fuse_box",
-                "You can't see anything through the dark hallway. You are too scared, you have to turn lights on somehow.",
+                "An old metal fuse box mounted to the wall. The cover hangs slightly ajar, and inside, one of the fuse slots is empty. Without it, the corridor remains dark and lifeless.",
                 (item) -> {
                     if (!item.getName().equals("fuse")) {
                         return "You can't use this item on the fuse box.";
@@ -92,13 +93,14 @@ public class GamePlan {
                 administration.getObstacles().remove("stuck_door");
                 return "The keypad beeps in approval. Heavy mechanisms shift behind the steel as the vault door unlocks with a deep, resonant thud. You are finally free from this long forgotten maze...";
             }
-            
+
             return "The password is wrong.";
         }, exitRoom);
 
         // přiřazují se průchody mezi prostory (sousedící prostory)
         barrack.setExit(kitchen);
         barrack.addItem(fuse);
+        barrack.addItem(rock);
         kitchen.setExit(barrack);
         kitchen.setExit(storage);
         kitchen.setExit(hallway);

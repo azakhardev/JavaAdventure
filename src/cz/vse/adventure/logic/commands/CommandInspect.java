@@ -23,7 +23,7 @@ public class CommandInspect implements ICommand {
             return "You don't have this item.";
         }
 
-        return item.getName();
+        return item.getDescription();
     }
 
     @Override
