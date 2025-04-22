@@ -64,14 +64,14 @@ public class GamePlan {
                 }, hallway);
         Obstacle stuckDoor = new Obstacle("stuck_door", "The door is jammed and won't budge. Maybe a crowbar could help.", (item) -> {
             if (!item.getName().equals("crowbar")) {
-                return "You can't use this item on the fuse box.";
+                return "You can't use this item to pry the door open.";
             }
             greenhouse.getObstacles().remove("stuck_door");
             return "With a sharp creak and a burst of force, the crowbar pries the door loose. The way ahead is now open, though the hinges will never be the same.";
         }, engineRoom);
         Obstacle overgrownPlants = new Obstacle("overgrown_plants", "Thick, overgrown plants block your way. They're too dense to move through.", (item) -> {
             if (!item.getName().equals("acid")) {
-                return "You can't use this item on the fuse box.";
+                return "The item has no effect on the thick plants.";
             }
             outpost.getObstacles().remove("overgrown_plants");
             return "You pour the corrosive mix onto the thick vines. They hiss and writhe before dissolving into a foul-smelling sludge. The path clears slowly, revealing the corridor beyond.";
@@ -79,7 +79,7 @@ public class GamePlan {
         Obstacle fallenRocks = new Obstacle("fallen_rocks", "A pile of large fallen rocks is blocking the path to the shafts.",
                 (item) -> {
                     if (!item.getName().equals("dynamite")) {
-                        return "You can't use this item on the fuse box.";
+                        return "This won't do much to a pile of rocks...";
                     }
                     outpost.getObstacles().remove("fallen_rocks");
                     return "You light the fuse and take cover. The explosion echoes through the cavern, and when the dust settles, the blockage is gone—replaced by rubble and a newly cleared path.";
@@ -92,6 +92,7 @@ public class GamePlan {
                 administration.getObstacles().remove("stuck_door");
                 return "The keypad beeps in approval. Heavy mechanisms shift behind the steel as the vault door unlocks with a deep, resonant thud. You are finally free from this long forgotten maze...";
             }
+            
             return "The password is wrong.";
         }, exitRoom);
 

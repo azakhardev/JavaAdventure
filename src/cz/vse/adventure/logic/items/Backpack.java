@@ -34,23 +34,25 @@ public class Backpack {
      * Metoda uloží předaný Item do batohu
      *
      * @param item věc, kterou chceme od batohu uložit
+     * @param room místnost, ze které věc bereme
      */
-    public boolean storeItem(Item item) {
+    public Item storeItem(Item item, Room room) throws Exception {
         int itemVolume = item.getVolume();
         int freeSpace = this.capacity - this.getUsedCapacity();
 
         if ((itemVolume <= freeSpace) && item.isLootable()) {
             items.add(item);
-            return true;
+            room.getItems().remove(item.getName());
+            return item;
         }
 
-        return false;
+        throw new Exception("You don't have enough space in your inventory for this item. You need at least " + itemVolume + " space.");
     }
 
     public String dropItem(Item item, Room room) {
         room.addItem(item);
         deleteItem(item);
-        return "";
+        return "You've dropped " + item.getName() + "in " + room.getName() + " room.";
     }
 
     public boolean deleteItem(Item item) {

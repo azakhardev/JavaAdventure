@@ -29,8 +29,10 @@ public class CommandInventory implements ICommand {
         StringBuilder storedItems = new StringBuilder("You have those items in your backpack: \n");
 
         for (Item item : backpack.getItems()) {
-            storedItems.append(item.getName()).append(" - ").append(item.getDescription()).append("\n");
+            storedItems.append(item.getName()).append(" that takes up ").append(item.getVolume()).append(" space unit.\n");
         }
+
+        storedItems.append("You have ").append(backpack.getCapacity() - backpack.getUsedCapacity()).append(" free space left in your backpack.\n");
 
         return storedItems.toString();
     }

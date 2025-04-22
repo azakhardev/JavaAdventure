@@ -25,15 +25,16 @@ public class CommandPick implements ICommand {
         Item item = this.gamePlan.getCurrentRoom().getItemByName(params[0]);
 
         if (item != null) {
-            if (this.backpack.storeItem(item)) {
-                this.gamePlan.getCurrentRoom().getItems().remove(item.getName());
+            try {
+                this.backpack.storeItem(item, this.gamePlan.getCurrentRoom());
                 return "You picked " + item.getName();
-            } else {
-                return "You don't have enough space for " + item.getName();
+            } catch (Exception e) {
+                return e.getMessage();
             }
         } else {
-            return "There is no such item";
+            return "There is no such item!";
         }
+
     }
 
     @Override
