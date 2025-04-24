@@ -13,6 +13,11 @@ public class Backpack {
         this.capacity = capacity;
     }
 
+    public String addCapacity(int capacity) {
+        this.capacity += capacity;
+        return "Now you have more capacity in your backpack: " + this.capacity;
+    }
+
     public int getCapacity() {
         return this.capacity;
     }
@@ -47,6 +52,17 @@ public class Backpack {
         }
 
         throw new Exception("You don't have enough space in your inventory for this item. You need at least " + itemVolume + " space.");
+    }
+
+    public Item storeItem(Item item) {
+        int itemVolume = item.getVolume();
+        int freeSpace = this.capacity - this.getUsedCapacity();
+
+        if ((itemVolume <= freeSpace) && item.isLootable()) {
+            items.add(item);
+        }
+
+        return item;
     }
 
     public String dropItem(Item item, Room room) {

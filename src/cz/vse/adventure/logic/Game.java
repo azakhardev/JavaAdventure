@@ -26,7 +26,7 @@ public class Game implements IGame {
      * Vytváří hru a inicializuje místnosti (prostřednictvím třídy HerniPlan) a seznam platných příkazů.
      */
     public Game() {
-        player = new Player(new Backpack(6));
+        player = new Player(new Backpack(4));
         gamePlan = new GamePlan();
         validCommands = new CommandsList();
         validCommands.insertCommand(new CommandHelp(validCommands));

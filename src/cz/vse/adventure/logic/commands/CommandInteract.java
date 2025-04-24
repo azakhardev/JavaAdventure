@@ -18,13 +18,13 @@ public class CommandInteract implements ICommand {
             return "You need to specify with which entity you want to interact. Usage: interact <entity_name>";
         }
 
-        Entity entity = plan.getCurrentRoom().getObstacleByName(params[0]);
+        Entity entity = plan.getCurrentRoom().getEntityByName(params[0]);
 
         if (entity == null) {
             return "There is no entity with name " + params[0];
         }
 
-        return entity.getDescription();
+        return entity.interact();
     }
 
     @Override

@@ -34,9 +34,13 @@ public class CommandUse implements ICommand {
             return "There is no such entity in the room. Use command look_around to see entities in the room.";
         }
 
-        item.useItem(entity);
+        String result = item.useItem(entity);
 
-        return "You've used " + item.getName() + "on " + entity.getName();
+        if (!result.contains("can't")) {
+            backpack.deleteItem(item);
+        }
+
+        return result;
     }
 
     @Override

@@ -22,16 +22,14 @@ public class GamePlan {
     private Room currentRoom;
 
     /**
-     * Konstruktor který vytváří jednotlivé prostory a propojuje je pomocí východů.
-     * Jako výchozí aktuální prostor nastaví halu.
+     *
      */
     public GamePlan() {
         setupRooms();
     }
 
     /**
-     * Vytváří jednotlivé prostory a propojuje je pomocí východů.
-     * Jako výchozí aktuální prostor nastaví domeček.
+     *
      */
     private void setupRooms() {
         // vytvářejí se jednotlivé prostory
@@ -51,8 +49,24 @@ public class GamePlan {
         Room armory = new Room("armory", " Locked cases and weapon racks. If only you had the right key...");
         Room exitRoom = new Room("exit", "The exit room.");
 
-        Item fuse = new Item("fuse", "Old fuse, but still funcitonal. Can be handy.", 1);
-        Item rock = new Item("rock", "Giant rock, you can't pick it up", 7);
+        Item fuse = new Item("fuse", "A small, cylindrical piece of metal with a glass window at the center. It looks like something that would restore power to the electrical systems, perhaps to the lights or machinery.", 2);
+        Item crowbar = new Item("crowbar", "A heavy-duty metal tool with a curved, flattened end. It looks worn from use, but still strong enough to pry open doors, crates, or anything that’s stubbornly stuck.", 4);
+        Item acid = new Item("acid", "A small bottle of highly corrosive liquid, with a faint greenish glow. It hisses whenever disturbed, a dangerous substance capable of eating through organic matter with ease.", 2);
+        Item dynamite = new Item("dynamite", "A bundle of explosive sticks wrapped in paper, with a fuse sticking out. The unmistakable smell of gunpowder lingers around it. A sure way to clear any large obstructions—if you’re brave enough to use it.", 3);
+        Item smallKey = new Item("key", "A tiny brass key, old and tarnished, but sturdy. It seems to fit a very specific lock—perhaps a drawer or cabinet that’s holding something valuable.", 1);
+        Item wrench = new Item("wrench", "An old wrench, covered in rust and grime. The handle is worn from years of use, but the wrench’s solid, heavy build makes it perfect for fixing or dismantling old machinery.", 3);
+        Item plant = new Item("plant", "A small vial containing a strange plant sample. Its leaves are thick and waxy, and it has an unnatural glow when examined closely. Could it be the key to unlocking something else in the environment", 1);
+        Item journal1 = new Item("journal_page1", "A yellowed sheet of paper, torn at the edges. The ink is smudged, but legible. It seems to describe strange happenings, possibly connected to the vault or the building’s mysterious history.", 0);
+        Item journal2 = new Item("journal_page2", "Another page from the journal, faded but still readable. It offers more clues about the vault, along with cryptic notes that suggest a deeper mystery.", 0);
+        Item matches = new Item("matches", "A small box of matches, their tips dark and ready to strike. They’re useful for lighting candles, lamps, or anything that has to be lit.", 1);
+        Item shovel = new Item("shovel", "A rusty, heavy shovel with a worn wooden handle. The metal is chipped from years of digging, but it’s still sharp enough to dig through loose soil or break through debris.", 5);
+        Item tape = new Item("tape", "A roll of thick, sticky tape. It looks like it could fix broken cables, seams, or even secure loose items together. There’s an odd residue on the sticky side, making it seem like it has seen better days.", 2);
+        Item bottle = new Item("bottle", "A small glass bottle, its edges smooth and clear. It’s empty now, but could easily hold liquid. It’s perfect for transporting the dangerous acid without spilling it.", 3);
+        Item cutters = new Item("wire_cutters", "A pair of wire cutters, with sharp, rusted edges. The handles are scuffed from years of use, but the tool is still functional and could easily snip through thick cables or wires.", 3);
+        Item cloth = new Item("cloth", "A torn piece of durable fabric, maybe from an old lab coat or curtain. Could be useful for patching or crafting.", 1);
+        Item needle = new Item("needle", "A slender, slightly bent sewing needle. Still sharp enough to stitch something together—if you have thread or cloth.", 1);
+        Item cable = new Item("broken_cable", "A snapped power cable with frayed wires at both ends. Sparks occasionally flicker from the exposed metal.", 2);
+
 
         Obstacle fuseBox = new Obstacle("fuse_box",
                 "An old metal fuse box mounted to the wall. The cover hangs slightly ajar, and inside, one of the fuse slots is empty. Without it, the corridor remains dark and lifeless.",
@@ -61,6 +75,7 @@ public class GamePlan {
                         return "You can't use this item on the fuse box.";
                     }
                     kitchen.getObstacles().remove("fuse_box");
+
                     return "You flipped the fuse. The hallway is now lit.";
                 }, hallway);
         Obstacle stuckDoor = new Obstacle("stuck_door", "The door is jammed and won't budge. Maybe a crowbar could help.", (item) -> {
@@ -71,19 +86,19 @@ public class GamePlan {
             return "With a sharp creak and a burst of force, the crowbar pries the door loose. The way ahead is now open, though the hinges will never be the same.";
         }, engineRoom);
         Obstacle overgrownPlants = new Obstacle("overgrown_plants", "Thick, overgrown plants block your way. They're too dense to move through.", (item) -> {
-            if (!item.getName().equals("acid")) {
-                return "The item has no effect on the thick plants.";
+            if (!item.getName().equals("acid_bottle")) {
+                return "You can't use this item to burn the thick plants.";
             }
             outpost.getObstacles().remove("overgrown_plants");
             return "You pour the corrosive mix onto the thick vines. They hiss and writhe before dissolving into a foul-smelling sludge. The path clears slowly, revealing the corridor beyond.";
         }, catacombs);
         Obstacle fallenRocks = new Obstacle("fallen_rocks", "A pile of large fallen rocks is blocking the path to the shafts.",
                 (item) -> {
-                    if (!item.getName().equals("dynamite")) {
-                        return "This won't do much to a pile of rocks...";
+                    if (!item.getName().equals("primed_explosive")) {
+                        return "You can't use this item on pile of rocks... It won't do much to it...";
                     }
                     outpost.getObstacles().remove("fallen_rocks");
-                    return "You light the fuse and take cover. The explosion echoes through the cavern, and when the dust settles, the blockage is gone—replaced by rubble and a newly cleared path.";
+                    return "You strike a match and light the fuse. You step back. A deep rumble follows... BOOM. The passage is clear.";
                 }, shaft);
         Obstacle vaultDoor = new Obstacle("vault_door", "A massive vault door bars your way. There's a numeric keypad next to it.", (item) -> {
             System.out.println("Please, enter the code:");
@@ -100,8 +115,8 @@ public class GamePlan {
         // přiřazují se průchody mezi prostory (sousedící prostory)
         barrack.setExit(kitchen);
         barrack.addItem(fuse);
-        barrack.addItem(rock);
         kitchen.setExit(barrack);
+        kitchen.addItem(smallKey);
         kitchen.setExit(storage);
         kitchen.setExit(hallway);
         kitchen.addObstacle(fuseBox);
@@ -129,9 +144,12 @@ public class GamePlan {
         outpost.addObstacle(fallenRocks);
         catacombs.setExit(outpost);
         shaft.setExit(outpost);
+        shaft.addItem(crowbar);
         laboratory.setExit(outpost);
         laboratory.setExit(armory);
+        laboratory.addItem(acid);
         armory.setExit(laboratory);
+        armory.addItem(dynamite);
         currentRoom = barrack;  // hra začíná v domečku
     }
 

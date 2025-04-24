@@ -21,14 +21,4 @@ public class Obstacle extends Entity {
     public void clearPath() {
         this.blockedRoom = null;
     }
-
-    @Override
-    public String interact() {
-        return "You can't go to the " + blockedRoom.getName() + " beacuse " + this.getName() + "is blocking your way.";
-    }
-
-    @Override
-    public String applyItem(Item item) {
-        return onUse.apply(item);
-    }
 }

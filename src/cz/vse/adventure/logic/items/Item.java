@@ -33,5 +33,6 @@ public class Item {
 
     public String useItem(Entity entity) {
         return entity.applyItem(this);
+
     }
 }
