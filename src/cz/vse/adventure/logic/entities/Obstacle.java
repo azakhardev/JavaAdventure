@@ -5,7 +5,7 @@ import cz.vse.adventure.logic.items.Item;
 
 import java.util.function.Function;
 
-public class Obstacle extends Entity {
+public class Obstacle extends Prop {
 
     private Room blockedRoom;
 

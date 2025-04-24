@@ -1,7 +1,7 @@
 package cz.vse.adventure.logic.commands;
 
 import cz.vse.adventure.logic.GamePlan;
-import cz.vse.adventure.logic.entities.Entity;
+import cz.vse.adventure.logic.entities.Prop;
 
 public class CommandInteract implements ICommand {
 
@@ -18,13 +18,13 @@ public class CommandInteract implements ICommand {
             return "You need to specify with which entity you want to interact. Usage: interact <entity_name>";
         }
 
-        Entity entity = plan.getCurrentRoom().getEntityByName(params[0]);
+        Prop prop = plan.getCurrentRoom().getEntityByName(params[0]);
 
-        if (entity == null) {
+        if (prop == null) {
             return "There is no entity with name " + params[0];
         }
 
-        return entity.interact();
+        return prop.interact();
     }
 
     @Override

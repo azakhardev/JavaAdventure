@@ -1,8 +1,7 @@
 package cz.vse.adventure.logic;
 
-import cz.vse.adventure.logic.entities.Entity;
-import cz.vse.adventure.logic.entities.Obstacle;
 import cz.vse.adventure.logic.entities.Prop;
+import cz.vse.adventure.logic.entities.Obstacle;
 import cz.vse.adventure.logic.items.Item;
 
 import java.util.*;
@@ -92,7 +91,7 @@ public class Room {
         items.remove(name);
     }
 
-    public Entity getEntityByName(String name) {
+    public Prop getEntityByName(String name) {
         if (obstacles.containsKey(name)) {
             return obstacles.get(name);
         }

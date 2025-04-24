@@ -1,6 +1,9 @@
 package cz.vse.adventure.logic.commands;
 
 import cz.vse.adventure.logic.GamePlan;
+import cz.vse.adventure.logic.entities.Prop;
+
+import java.util.Arrays;
 
 public class CommandDescription implements ICommand {
 
@@ -18,7 +21,16 @@ public class CommandDescription implements ICommand {
             return gamePlan.getCurrentRoom().getLongDescription();
         }
 
-        return "Command 'description' does not take any parameters.";
+        if (params.length == 1) {
+            Prop p = gamePlan.getCurrentRoom().getEntityByName(params[0]);
+            if (p != null) {
+                return p.getDescription();
+            } else {
+                return "There is no such object in this room.";
+            }
+        }
+
+        return "Command 'description' takes none of the parameters for description of the room and one for description of the object.";
 
     }
 

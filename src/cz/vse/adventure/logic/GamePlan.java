@@ -2,9 +2,11 @@ package cz.vse.adventure.logic;
 
 
 import cz.vse.adventure.logic.entities.Obstacle;
+import cz.vse.adventure.logic.entities.Prop;
 import cz.vse.adventure.logic.items.Item;
 
 import java.util.Scanner;
+import java.util.function.Function;
 
 /**
  * Class HerniPlan - třída představující mapu a stav adventury.
@@ -53,7 +55,8 @@ public class GamePlan {
         Item crowbar = new Item("crowbar", "A heavy-duty metal tool with a curved, flattened end. It looks worn from use, but still strong enough to pry open doors, crates, or anything that’s stubbornly stuck.", 4);
         Item acid = new Item("acid", "A small bottle of highly corrosive liquid, with a faint greenish glow. It hisses whenever disturbed, a dangerous substance capable of eating through organic matter with ease.", 2);
         Item dynamite = new Item("dynamite", "A bundle of explosive sticks wrapped in paper, with a fuse sticking out. The unmistakable smell of gunpowder lingers around it. A sure way to clear any large obstructions—if you’re brave enough to use it.", 3);
-        Item smallKey = new Item("key", "A tiny brass key, old and tarnished, but sturdy. It seems to fit a very specific lock—perhaps a drawer or cabinet that’s holding something valuable.", 1);
+        Item needle = new Item("needle", "A slender, slightly bent sewing needle. Still sharp enough to stitch something together—if you have thread or cloth.", 1);
+        Item smallKey = new Item("key", "A tiny brass key, old and tarnished, but sturdy. It seems to fit a very specific lock — perhaps a drawer or cabinet that’s holding something valuable.", 1);
         Item wrench = new Item("wrench", "An old wrench, covered in rust and grime. The handle is worn from years of use, but the wrench’s solid, heavy build makes it perfect for fixing or dismantling old machinery.", 3);
         Item plant = new Item("plant", "A small vial containing a strange plant sample. Its leaves are thick and waxy, and it has an unnatural glow when examined closely. Could it be the key to unlocking something else in the environment", 1);
         Item journal1 = new Item("journal_page1", "A yellowed sheet of paper, torn at the edges. The ink is smudged, but legible. It seems to describe strange happenings, possibly connected to the vault or the building’s mysterious history.", 0);
@@ -64,8 +67,34 @@ public class GamePlan {
         Item bottle = new Item("bottle", "A small glass bottle, its edges smooth and clear. It’s empty now, but could easily hold liquid. It’s perfect for transporting the dangerous acid without spilling it.", 3);
         Item cutters = new Item("wire_cutters", "A pair of wire cutters, with sharp, rusted edges. The handles are scuffed from years of use, but the tool is still functional and could easily snip through thick cables or wires.", 3);
         Item cloth = new Item("cloth", "A torn piece of durable fabric, maybe from an old lab coat or curtain. Could be useful for patching or crafting.", 1);
-        Item needle = new Item("needle", "A slender, slightly bent sewing needle. Still sharp enough to stitch something together—if you have thread or cloth.", 1);
         Item cable = new Item("broken_cable", "A snapped power cable with frayed wires at both ends. Sparks occasionally flicker from the exposed metal.", 2);
+
+        Function<Item, String> used = (item) -> "You have already used an item on this object";
+
+        Prop toilet = new Prop("toilet_bowl", "Disgusting, but suspiciously clean inside", () -> "You reach in (gross), but you didn't find anything.");
+        Prop mirror = new Prop("mirror", "A wall mirror, cracked down the middle, reflecting a distorted version of you.", () -> "You stare at your warped reflection.");
+        Prop locker = new Prop("locker", "A dented locker with chipped paint and a rusted handle.", () -> "You need some sort of key to open it.");
+        locker.setOnUse((item) -> {
+            if (item.getName().equals("key")) {
+                barrack.addItem(new Item("locker_note", "Text here", 0));
+                locker.setOnInteract(() -> "The locker that you have unlocked a while ago.");
+                locker.setOnUse(used);
+                return "You've succesfully opened a locker";
+            }
+            return "This doesn't fit into the lock.";
+        });
+
+        Prop drawer = new Prop("oven_drawer", "A filthy oven drawer jammed halfway, something rattling inside.", () -> {
+            kitchen.addItem(new Item("knife", "Old but sharp. Could be useful for cutting cables or defending yourself.", 2));
+            return "You yank it open with effort. You see a knife inside.";
+        });
+        Prop pans = new Prop("pans", "Rusted metal pans dangle from hooks, swaying gently despite no wind.", () -> "You accidentally knock one. The clang echoes.");
+        Prop fridge = new Prop("fridge", "An ancient refrigerator humming faintly, its door slightly ajar.", () -> "You peek inside and quickly regret it.");
+
+        Prop box = new Prop("box", " A dusty cardboard box sitting just out of reach on a steel shelf.", () -> {
+            storage.addItem(new Item("screwdriver", "Flathead tool. Can remove panels or open crates.", 2));
+            return "There is something inside the box.";
+        });
 
 
         Obstacle fuseBox = new Obstacle("fuse_box",
@@ -114,14 +143,21 @@ public class GamePlan {
 
         // přiřazují se průchody mezi prostory (sousedící prostory)
         barrack.setExit(kitchen);
-        barrack.addItem(fuse);
+        barrack.addProp(toilet);
+        barrack.addProp(mirror);
+        barrack.addProp(locker);
+        barrack.addItem(needle);
         kitchen.setExit(barrack);
         kitchen.addItem(smallKey);
+        kitchen.addProp(pans);
+        kitchen.addProp(drawer);
+        kitchen.addProp(fridge);
         kitchen.setExit(storage);
         kitchen.setExit(hallway);
         kitchen.addObstacle(fuseBox);
         storage.setExit(kitchen);
         storage.setExit(office);
+        storage.addItem(fuse);
         office.setExit(storage);
         hallway.setExit(kitchen);
         hallway.setExit(greenhouse);

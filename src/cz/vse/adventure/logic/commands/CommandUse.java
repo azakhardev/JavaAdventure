@@ -1,8 +1,8 @@
 package cz.vse.adventure.logic.commands;
 
 import cz.vse.adventure.logic.GamePlan;
-import cz.vse.adventure.logic.entities.Entity;
-import cz.vse.adventure.logic.entities.Player;
+import cz.vse.adventure.logic.entities.Obstacle;
+import cz.vse.adventure.logic.entities.Prop;
 import cz.vse.adventure.logic.items.Backpack;
 import cz.vse.adventure.logic.items.Item;
 
@@ -24,19 +24,19 @@ public class CommandUse implements ICommand {
         }
 
         Item item = backpack.getItemWithName(params[0]);
-        Entity entity = plan.getCurrentRoom().getEntityByName(params[1]);
+        Prop prop = plan.getCurrentRoom().getEntityByName(params[1]);
 
         if (item == null) {
             return "You do not have an item in backpack with that name. Use command inventory to display your carried items. ";
         }
 
-        if (entity == null) {
+        if (prop == null) {
             return "There is no such entity in the room. Use command look_around to see entities in the room.";
         }
 
-        String result = item.useItem(entity);
+        String result = item.useItem(prop);
 
-        if (!result.contains("can't")) {
+        if (!result.contains("can't") && (prop instanceof Obstacle)) {
             backpack.deleteItem(item);
         }
 

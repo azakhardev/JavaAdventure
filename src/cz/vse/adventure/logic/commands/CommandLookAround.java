@@ -2,9 +2,8 @@ package cz.vse.adventure.logic.commands;
 
 import cz.vse.adventure.logic.GamePlan;
 import cz.vse.adventure.logic.Room;
-import cz.vse.adventure.logic.entities.Entity;
-import cz.vse.adventure.logic.entities.Obstacle;
 import cz.vse.adventure.logic.entities.Prop;
+import cz.vse.adventure.logic.entities.Obstacle;
 import cz.vse.adventure.logic.items.Item;
 
 public class CommandLookAround implements ICommand {

@@ -1,6 +1,6 @@
 package cz.vse.adventure.logic.items;
 
-import cz.vse.adventure.logic.entities.Entity;
+import cz.vse.adventure.logic.entities.Prop;
 
 public class Item {
     private String name;
@@ -31,8 +31,8 @@ public class Item {
         return this.lootable;
     }
 
-    public String useItem(Entity entity) {
-        return entity.applyItem(this);
+    public String useItem(Prop prop) {
+        return prop.applyItem(this);
 
     }
 }
