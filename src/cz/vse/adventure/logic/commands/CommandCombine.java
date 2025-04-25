@@ -38,6 +38,8 @@ public class CommandCombine implements ICommand {
             }
 
             if (Arrays.asList(params).contains("cloth") && Arrays.asList(params).contains("needle")) {
+                this.backpack.deleteItem(item1);
+                this.backpack.deleteItem(item2);
                 return "You've crafted a hand-stitched fabric extension for your backpack. It’s rough, but it holds together well enough to carry more gear." + backpack.addCapacity(1);
             }
 
