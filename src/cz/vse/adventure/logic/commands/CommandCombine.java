@@ -34,7 +34,7 @@ public class CommandCombine implements ICommand {
 
             if (Arrays.asList(params).contains("tape") && Arrays.asList(params).contains("broken_cable")) {
                 crafted = true;
-                newItem = new Item("repaired_cable", "A once-split cable now firmly held together with layers of thick tape. It should be safe to use—for now.", 2);
+                newItem = new Item("sheathed_cable", "A once-split cable now firmly held together with layers of thick tape. It should be safe to use—for now.", 2);
             }
 
             if (Arrays.asList(params).contains("cloth") && Arrays.asList(params).contains("needle")) {

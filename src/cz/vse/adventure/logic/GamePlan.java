@@ -124,6 +124,51 @@ public class GamePlan {
         });
         Prop closet = new Prop("utility_door", "A locked door with a faded label. Smells faintly of chemicals.", () -> "It’s sealed tight—needs a key or override.");
 
+        Prop irrigator = new Prop("irrigation_panel", "A rusted water control unit with blinking lights and jammed valves.", () -> "You flip a few switches. Nothing responds.");
+        Prop soil = new Prop("loose_soil", "A patch of soil darker and softer than the rest, as if something was recently buried there. The nearby roots are parted slightly, as if disturbed.", () -> "Something is shining in the soil.");
+        Prop pot = new Prop("hanging_pot", "A cracked ceramic pot suspended from above by a fraying wire.");
+        pot.setOnInteract(() -> {
+            greenhouse.removeItem(pot.getName());
+            return "You tug it down gently—it falls and shatters.";
+        });
+
+        Prop console = new Prop("control_console", " A complex panel of buttons and dials, most worn beyond recognition.", () -> "You press a few—one flickers weakly.");
+        Prop core = new Prop("power_core", "A large metal unit that once powered part of the facility. It's humming faintly.", () -> "You have a feeling that it still emits radiation...");
+        Prop openedPanel = new Prop("opened_panel", "There are two contacts that have to be connected somehow", () -> "If only you had a sheathed cable...");
+        Prop serverRack = new Prop("server", "A functional server, it can contain a lot of information.", () -> "Research Log: Facility X\n" +
+                "Clearance Level: REDACTED\n" +
+                "Day 189 — Subject #5 no longer responds to auditory input. However, the neural scans show increased activity during blackout phases. Attempts to sedate it result in violent resistance from connected systems.\n" +
+                "Day 193 — Something’s wrong. The security system rebooted without command. Doors are locking randomly. We’ve lost containment in lower labs. Subject #5’s heartbeat was detected in multiple wings simultaneously.\n" +
+                "Day 194 — We tried to wipe the servers. It didn’t work. The data… it grew back. Not copied. Not restored. Grew.\n" +
+                "Day 195 — I saw my own face in the live feed. But I haven’t left the server room for three days.\n" +
+                "There’s something inside the system. Or maybe we’re already inside it.\n" +
+                "If anyone reads this — do not plug in.\n" +
+                "Remember the sequence:\n" +
+                "__37____");
+        openedPanel.setOnUse((item -> {
+            if (item.getName().equals("sheathed_cable")) {
+                serverRoom.addProp(serverRack);
+                //TODO: Remove wires or mind up something else
+                return "By connecting the contacts, you turned on the light somewhere nearby.";
+            }
+            return "It's better to stop experimenting with electricity.";
+        }));
+        Prop enginePanel = new Prop("wall_panel", "A removable side panel secured with old screws. Faint labels hint at internal circuitry.");
+        enginePanel.setOnUse(item -> {
+            if (item.getName().equals("screwdriver")) {
+                engineRoom.addProp(openedPanel);
+                engineRoom.removeItem(enginePanel.getName());
+            }
+            return "This won't help";
+        });
+
+        Prop radio = new Prop("radio_unit", "A bulky, military-grade radio, knobs worn smooth by anxious hands.", () -> "You twist the dial through static until a voice crackles in: \"If you're hearing this, it’s already too late.\"");
+        Prop toolbox = new Prop("toolbox", "A dented red toolbox, half-buried in snowdrift seeping through the broken windo", () -> {
+            outpost.addItem(tape);
+            return "You open it. Inside, a tape rests, untouched for years.";
+        });
+        Prop walkie = new Prop("walie-talkie", "One half of a pair. A name is carved crudely into its side — 'Milo'.", () -> "You press the button. Silence... then static... then a voice: \"...don’t go to the lower levels...\"");
+
         Obstacle fuseBox = new Obstacle("fuse_box",
                 "An old metal fuse box mounted to the wall. The cover hangs slightly ajar, and inside, one of the fuse slots is empty. Without it, the corridor remains dark and lifeless.",
                 (item) -> {
@@ -203,8 +248,16 @@ public class GamePlan {
         greenhouse.setExit(engineRoom);
         greenhouse.setExit(outpost);
         greenhouse.addObstacle(stuckDoor);
+        greenhouse.addProp(irrigator);
+        greenhouse.addProp(pot);
+        greenhouse.addProp(soil);
+        greenhouse.addItem(shovel);
         engineRoom.setExit(greenhouse);
         engineRoom.setExit(serverRoom);
+        engineRoom.addItem(cutters);
+        engineRoom.addProp(enginePanel);
+        engineRoom.addProp(console);
+        engineRoom.addProp(core);
         serverRoom.setExit(engineRoom);
         serverRoom.setExit(administration);
         administration.setExit(serverRoom);
@@ -216,6 +269,9 @@ public class GamePlan {
         outpost.setExit(laboratory);
         outpost.addObstacle(overgrownPlants);
         outpost.addObstacle(fallenRocks);
+        outpost.addProp(walkie);
+        outpost.addProp(radio);
+        outpost.addProp(toolbox);
         catacombs.setExit(outpost);
         shaft.setExit(outpost);
         shaft.addItem(crowbar);
