@@ -1,0 +1,229 @@
+Welcome!
+This is a story about lost man in abandoned facility - FACILITY X, who doesn't remember his past.
+Write 'help', if you don't know how to play
+
+You are in room barrack: Your starting point. A simple room with beds and lockers once used by the facility’s staff..
+exits: kitchen
+> pick needle
+You picked needle
+> go kitchen
+You are in room kitchen: Dusty counters, rusted utensils, and the smell of something long forgotten..
+exits: hallway storage barrack
+> go storage
+You are in room storage: Old boxes, broken crates, and cobwebs. Maybe there’s still something useful left..
+exits: kitchen office
+> pick fuse
+You picked fuse
+> go office
+You are in room office: Scattered papers and flickering lights. Someone left in a hurry..
+exits: storage
+> interact skeleton
+You tear off a piece of the jacket’s fabric—it comes away with a soft rip.
+> pick cloth
+You picked cloth
+> combine cloth needle
+You've crafted a hand-stitched fabric extension for your backpack. It’s rough, but it holds together well enough to carry more gear.Now you have more capacity in your backpack: 5
+> go storage
+You are in room storage: Old boxes, broken crates, and cobwebs. Maybe there’s still something useful left..
+exits: kitchen office
+> interact box
+There is something inside the box.
+> pick screwdriver
+You picked screwdriver
+> go kitchen
+You are in room kitchen: Dusty counters, rusted utensils, and the smell of something long forgotten..
+exits: hallway storage barrack
+> use fuse fuse_box
+You flipped the fuse. The hallway is now lit.
+> interact oven_drawer
+You yank it open with effort. You see matches inside.
+> pick matches
+You picked matches
+> go hallway
+You are in room hallway: A dim corridor connecting various parts of the facility. Echoes make you feel uneasy..
+exits: greenhouse kitchen
+> use screwdriver loose_panel
+You unscrew the panel with effort, revealing the cables.
+> go greenhouse
+You are in room greenhouse: Overgrown plants have taken control. Nature is reclaiming its space..
+exits: engine_room hallway outpost
+> drop matches
+You've dropped matches in greenhouse room.
+> drop screwdriver
+You've dropped screwdriver in greenhouse room.
+> pick shovel
+You picked shovel
+> use shovel loose_soil
+You've dig up a bottle
+> drop shovel
+You've dropped shovel in greenhouse room.
+> pick bottle
+You picked bottle
+> pick matches
+You picked matches
+> go outpost
+You are in room outpost: An elevated station with a clear view of the surroundings. Once used to keep things in... or out..
+exits: greenhouse shaft lab catacombs
+> go lab
+You are in room lab: Beakers, notes, and strange equipment. Experiments were conducted here... questionable ones..
+exits: armory outpost
+> pick jouranal_page2
+There is no such item!
+> use bottle chemical_tank
+You've filled the bottle with acid and left in on the counter
+> go armory
+You are in room armory:  Locked cases and weapon racks. It's unfortunate that you don't have keys for them....
+exits: lab
+> pick dynamite
+You picked dynamite
+> combine dynamite matches
+You crafted new item: primed_explosive - A bundle of aged sticks of dynamite with a fuse attached. Needs to be ignited to detonate—best used carefully at the right spot.
+> go lab
+You are in room lab: Beakers, notes, and strange equipment. Experiments were conducted here... questionable ones..
+exits: armory outpost
+> go outpost
+You are in room outpost: An elevated station with a clear view of the surroundings. Once used to keep things in... or out..
+exits: greenhouse shaft lab catacombs
+> use primed_explosive fallen_rocks
+You strike a match and light the fuse. You step back. A deep rumble follows... BOOM. The passage is clear.
+> go shaft
+You are in room shaft: A deep vertical tunnel with a broken lift. Getting down won’t be easy..
+exits: outpost
+> interact emergency_hatch
+You move aside the loose wiring and find a hidden compartment. Inside, a crowbar lies covered in dust.
+> pick crowbar
+You picked crowbar
+> go outpost
+You are in room outpost: An elevated station with a clear view of the surroundings. Once used to keep things in... or out..
+exits: greenhouse shaft lab catacombs
+> go greenhouse
+You are in room greenhouse: Overgrown plants have taken control. Nature is reclaiming its space..
+exits: engine_room hallway outpost
+> use crowbar stuck_door
+With a sharp creak and a burst of force, the crowbar pries the door loose. The way ahead is now open, though the hinges will never be the same.
+> drop crowbar
+You've dropped crowbar in greenhouse room.
+> go outpost
+You are in room outpost: An elevated station with a clear view of the surroundings. Once used to keep things in... or out..
+exits: greenhouse shaft lab catacombs
+> interact toolbox
+You open it. Inside lies a tape , untouched for years.
+> pick tape
+You picked tape
+> go greenhouse
+You are in room greenhouse: Overgrown plants have taken control. Nature is reclaiming its space..
+exits: engine_room hallway outpost
+> pick screwdriver
+You picked screwdriver
+> go engine_room
+You are in room engine_room: Heavy machinery and tangled wires. Something here is still humming.
+exits: greenhouse server_room
+> use screwdriver wall_panel
+You opened the panel with your screwdriver. What a handy tool!
+> drop screwdriver
+You've dropped screwdriver in engine_room room.
+> pick wire_cutters
+You picked wire_cutters
+> go greenhouse
+You are in room greenhouse: Overgrown plants have taken control. Nature is reclaiming its space..
+exits: engine_room hallway outpost
+> go hallway
+You are in room hallway: A dim corridor connecting various parts of the facility. Echoes make you feel uneasy..
+exits: greenhouse kitchen
+> use wire_cutters panel_cables
+You cut the cables with a quick cut.
+> drop wire_cutters
+You've dropped wire_cutters in hallway room.
+> pick broken_cable
+You picked broken_cable
+> combine tape broken_cable
+You crafted new item: sheathed_cable - A once-split cable now firmly held together with layers of thick tape. It should be safe to use—for now.
+> go greenhouse
+You are in room greenhouse: Overgrown plants have taken control. Nature is reclaiming its space..
+exits: engine_room hallway outpost
+> go engine_room
+You are in room engine_room: Heavy machinery and tangled wires. Something here is still humming.
+exits: greenhouse server_room
+> use sheathed_cable opened_panel
+By connecting the contacts, you powered the server room.
+> go greenhouse
+You are in room greenhouse: Overgrown plants have taken control. Nature is reclaiming its space..
+exits: engine_room hallway outpost
+> go hallway
+You are in room hallway: A dim corridor connecting various parts of the facility. Echoes make you feel uneasy..
+exits: greenhouse kitchen
+> go kitchen
+You are in room kitchen: Dusty counters, rusted utensils, and the smell of something long forgotten..
+exits: hallway storage barrack
+> pick key
+You picked key
+> go barrack
+You are in room barrack: Your starting point. A simple room with beds and lockers once used by the facility’s staff..
+exits: kitchen
+> use key locker
+You've succesfully opened a locker
+> pick journal_page1
+You picked journal_page1
+> go kitchen
+You are in room kitchen: Dusty counters, rusted utensils, and the smell of something long forgotten..
+exits: hallway storage barrack
+> go hallway
+You are in room hallway: A dim corridor connecting various parts of the facility. Echoes make you feel uneasy..
+exits: greenhouse kitchen
+> go greenhouse
+You are in room greenhouse: Overgrown plants have taken control. Nature is reclaiming its space..
+exits: engine_room hallway outpost
+> go outpost
+You are in room outpost: An elevated station with a clear view of the surroundings. Once used to keep things in... or out..
+exits: greenhouse shaft lab catacombs
+> go lab
+You are in room lab: Beakers, notes, and strange equipment. Experiments were conducted here... questionable ones..
+exits: armory outpost
+> pick journal_page2
+You picked journal_page2
+> pick acid_bottle
+You picked acid_bottle
+> go outpost
+You are in room outpost: An elevated station with a clear view of the surroundings. Once used to keep things in... or out..
+exits: greenhouse shaft lab catacombs
+> use acid_bottle overgrown_plants
+You pour the corrosive mix onto the thick vines. They hiss and writhe before dissolving into a foul-smelling sludge. The path clears slowly, revealing the corridor beyond.
+> go catacombs
+You are in room catacombs: Dark tunnels beneath the facility. The air is thick, and the silence is deafening..
+exits: outpost
+> pick catacombs_note
+You picked catacombs_note
+> go outpost
+You are in room outpost: An elevated station with a clear view of the surroundings. Once used to keep things in... or out..
+exits: greenhouse shaft lab catacombs
+> go greenhouse
+You are in room greenhouse: Overgrown plants have taken control. Nature is reclaiming its space..
+exits: engine_room hallway outpost
+> go engine_room
+You are in room engine_room: Heavy machinery and tangled wires. Something here is still humming.
+exits: greenhouse server_room
+> go server_room
+You are in room server_room: Cold and silent. Racks of old servers blink with a strange rhythm..
+exits: engine_room administration
+> interact server
+Research Log: Facility X
+Clearance Level: REDACTED
+Day 189 — Subject #5 no longer responds to auditory input. However, the neural scans show increased activity during blackout phases. Attempts to sedate it result in violent resistance from connected systems.
+Day 193 — Something’s wrong. The security system rebooted without command. Doors are locking randomly. We’ve lost containment in lower labs. Subject #5’s heartbeat was detected in multiple wings simultaneously.
+Day 194 — We tried to wipe the servers. It didn’t work. The data… it grew back. Not copied. Not restored. Grew.
+Day 195 — I saw my own face in the live feed. But I haven’t left the server room for three days.
+There’s something inside the system. Or maybe we’re already inside it.
+If anyone reads this — do not plug in.
+Remember the sequence:
+__61____
+> go administration
+You are in room administration: A central control station with a blinking console. Perhaps you can access security here..
+exits: exit server_room
+> inspect journal_page1
+Day 3. The AI has started showing... anomalies. Small errors at first. Voices from the intercom. I thought I was imagining things until tonight. The terminal displayed a warning code: ____02__.
+> inspect journal_page2
+Day 7. Security overridden itself. The doors lock us in at night. We pray it’s just glitches. My access code was forcibly changed to 41 without my input. I don't feel safe anymore.
+> inspect catacombs_note
+There is a second path. Buried long ago, for good reason. Should we ever return... don't. Last attempt at breaching the tomb failed. We lost contact after marker X12
+> interact keypad
+The keypad beeps in approval. Heavy mechanisms shift behind the steel as the vault door unlocks with a deep, resonant thud. You are finally free from this long forgotten maze...

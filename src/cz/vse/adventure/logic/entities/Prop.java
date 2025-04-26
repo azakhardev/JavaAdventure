@@ -1,5 +1,6 @@
 package cz.vse.adventure.logic.entities;
 
+import cz.vse.adventure.logic.commands.UseResult;
 import cz.vse.adventure.logic.items.Item;
 
 import java.util.function.Function;
@@ -10,21 +11,21 @@ public class Prop {
 
     private String description;
 
-    protected Function<Item, String> onUse = (item) -> {
-        return "You can't use " + item.getName() + " on this object!";
+    protected Function<Item, UseResult> onUse = (item) -> {
+        return new UseResult("You can't use " + item.getName() + " on this object!", false);
     };
 
     protected Supplier<String> onInteract = this::getDescription;
 
 
-    public Prop(String name, String descripton, Function<Item, String> onUse, Supplier<String> onInteract) {
+    public Prop(String name, String descripton, Function<Item, UseResult> onUse, Supplier<String> onInteract) {
         this.name = name;
         this.description = descripton;
         this.onUse = onUse;
         this.onInteract = onInteract;
     }
 
-    public Prop(String name, String descripton, Function<Item, String> onUse) {
+    public Prop(String name, String descripton, Function<Item, UseResult> onUse) {
         this.name = name;
         this.description = descripton;
         this.onUse = onUse;
@@ -53,7 +54,7 @@ public class Prop {
         this.description = description;
     }
 
-    public void setOnUse(Function<Item, String> onUse) {
+    public void setOnUse(Function<Item, UseResult> onUse) {
         this.onUse = onUse;
     }
 
@@ -65,7 +66,7 @@ public class Prop {
         return onInteract.get();
     }
 
-    public String applyItem(Item item) {
+    public UseResult applyItem(Item item) {
         return onUse.apply(item);
     }
 }

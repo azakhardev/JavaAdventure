@@ -27,11 +27,6 @@ public class CommandCombine implements ICommand {
             Item newItem = new Item("", "", 0);
             boolean crafted = false;
 
-            if (Arrays.asList(params).contains("acid") && Arrays.asList(params).contains("bottle")) {
-                crafted = true;
-                newItem = new Item("acid_bottle", "A carefully filled glass bottle, now holding a dangerous acid. Handle with caution.", 3);
-            }
-
             if (Arrays.asList(params).contains("tape") && Arrays.asList(params).contains("broken_cable")) {
                 crafted = true;
                 newItem = new Item("sheathed_cable", "A once-split cable now firmly held together with layers of thick tape. It should be safe to use—for now.", 2);
@@ -52,7 +47,7 @@ public class CommandCombine implements ICommand {
                 this.backpack.deleteItem(item1);
                 this.backpack.deleteItem(item2);
                 this.backpack.storeItem(newItem);
-                return "You crafted new item:" + newItem.getName() + " - " + newItem.getDescription();
+                return "You crafted new item: " + newItem.getName() + " - " + newItem.getDescription();
             }
 
         } else {

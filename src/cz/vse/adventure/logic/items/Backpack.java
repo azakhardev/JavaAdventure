@@ -68,7 +68,7 @@ public class Backpack {
     public String dropItem(Item item, Room room) {
         room.addItem(item);
         deleteItem(item);
-        return "You've dropped " + item.getName() + "in " + room.getName() + " room.";
+        return "You've dropped " + item.getName() + " in " + room.getName() + " room.";
     }
 
     public boolean deleteItem(Item item) {

@@ -1,6 +1,7 @@
 package cz.vse.adventure.logic;
 
 
+import cz.vse.adventure.logic.commands.UseResult;
 import cz.vse.adventure.logic.entities.Obstacle;
 import cz.vse.adventure.logic.entities.Prop;
 import cz.vse.adventure.logic.items.Item;
@@ -48,21 +49,23 @@ public class GamePlan {
         Room catacombs = new Room("catacombs", "Dark tunnels beneath the facility. The air is thick, and the silence is deafening.");
         Room shaft = new Room("shaft", "A deep vertical tunnel with a broken lift. Getting down won’t be easy.");
         Room laboratory = new Room("lab", "Beakers, notes, and strange equipment. Experiments were conducted here... questionable ones.");
-        Room armory = new Room("armory", " Locked cases and weapon racks. If only you had the right key...");
-        Room exitRoom = new Room("exit", "The exit room.");
+        Room armory = new Room("armory", " Locked cases and weapon racks. It's unfortunate that you don't have keys for them...");
+        Room exitRoom = new Room("exit", "You are at exit - type end to end the game and exit the facility.");
 
         Item fuse = new Item("fuse", "A small, cylindrical piece of metal with a glass window at the center. It looks like something that would restore power to the electrical systems, perhaps to the lights or machinery.", 2);
         Item crowbar = new Item("crowbar", "A heavy-duty metal tool with a curved, flattened end. It looks worn from use, but still strong enough to pry open doors, crates, or anything that’s stubbornly stuck.", 4);
-        Item acid = new Item("acid", "A small bottle of highly corrosive liquid, with a faint greenish glow. It hisses whenever disturbed, a dangerous substance capable of eating through organic matter with ease.", 2);
+        //Item acid = new Item("acid", "A small bottle of highly corrosive liquid, with a faint greenish glow. It hisses whenever disturbed, a dangerous substance capable of eating through organic matter with ease.", 2);
         Item dynamite = new Item("dynamite", "A bundle of explosive sticks wrapped in paper, with a fuse sticking out. The unmistakable smell of gunpowder lingers around it. A sure way to clear any large obstructions—if you’re brave enough to use it.", 3);
         Item needle = new Item("needle", "A slender, slightly bent sewing needle. Still sharp enough to stitch something together—if you have thread or cloth.", 1);
         Item smallKey = new Item("key", "A tiny brass key, old and tarnished, but sturdy. It seems to fit a very specific lock — perhaps a drawer or cabinet that’s holding something valuable.", 1);
         Item screwdriver = new Item("screwdriver", "Flathead tool. Can remove panels or open crates.", 2);
         Item matches = new Item("matches", "A small box of matches, their tips dark and ready to strike. They’re useful for lighting candles, lamps, or anything that has to be lit.", 1);
-        Item wrench = new Item("wrench", "An old wrench, covered in rust and grime. The handle is worn from years of use, but the wrench’s solid, heavy build makes it perfect for fixing or dismantling old machinery.", 3);
-        Item plant = new Item("plant", "A small vial containing a strange plant sample. Its leaves are thick and waxy, and it has an unnatural glow when examined closely. Could it be the key to unlocking something else in the environment", 1);
-        Item journal1 = new Item("journal_page1", "A yellowed sheet of paper, torn at the edges. The ink is smudged, but legible. It seems to describe strange happenings, possibly connected to the vault or the building’s mysterious history.", 0);
-        Item journal2 = new Item("journal_page2", "Another page from the journal, faded but still readable. It offers more clues about the vault, along with cryptic notes that suggest a deeper mystery.", 0);
+        //Item wrench = new Item("wrench", "An old wrench, covered in rust and grime. The handle is worn from years of use, but the wrench’s solid, heavy build makes it perfect for fixing or dismantling old machinery.", 3);
+        //Item plant = new Item("plant", "A small vial containing a strange plant sample. Its leaves are thick and waxy, and it has an unnatural glow when examined closely. Could it be the key to unlocking something else in the environment", 1);
+        Item acidBottle = new Item("acid_bottle", "A carefully filled glass bottle, now holding a dangerous acid. Handle with caution.", 3);
+        Item journal1 = new Item("journal_page1", "Day 3. The AI has started showing... anomalies. Small errors at first. Voices from the intercom. I thought I was imagining things until tonight. The terminal displayed a warning code: ____" + Password.password.charAt(4) + Password.password.charAt(5) + "__.", 0);
+        Item journal2 = new Item("journal_page2", "Day 7. Security overridden itself. The doors lock us in at night. We pray it’s just glitches. My access code was forcibly changed to " + Password.password.charAt(0) + Password.password.charAt(1) + " without my input. I don't feel safe anymore.", 0);
+        Item catacmobsNote = new Item("catacombs_note", "There is a second path. Buried long ago, for good reason. Should we ever return... don't. Last attempt at breaching the tomb failed. We lost contact after marker X" + Password.password.charAt(6) + Password.password.charAt(7), 0);
         Item shovel = new Item("shovel", "A rusty, heavy shovel with a worn wooden handle. The metal is chipped from years of digging, but it’s still sharp enough to dig through loose soil or break through debris.", 5);
         Item tape = new Item("tape", "A roll of thick, sticky tape. It looks like it could fix broken cables, seams, or even secure loose items together. There’s an odd residue on the sticky side, making it seem like it has seen better days.", 2);
         Item bottle = new Item("bottle", "A small glass bottle, its edges smooth and clear. It’s empty now, but could easily hold liquid. It’s perfect for transporting the dangerous acid without spilling it.", 3);
@@ -70,65 +73,78 @@ public class GamePlan {
         Item cloth = new Item("cloth", "A torn piece of durable fabric, maybe from an old lab coat or curtain. Could be useful for patching or crafting.", 1);
         Item cable = new Item("broken_cable", "A snapped power cable with frayed wires at both ends. Sparks occasionally flicker from the exposed metal.", 2);
 
-        Function<Item, String> used = (item) -> "You have already used an item on this object";
+        Function<Item, UseResult> used = (item) -> new UseResult("You have already used an item on this object", false);
 
         Prop toilet = new Prop("toilet_bowl", "Disgusting, but suspiciously clean inside", () -> "You reach in (gross), but you didn't find anything.");
         Prop mirror = new Prop("mirror", "A wall mirror, cracked down the middle, reflecting a distorted version of you.", () -> "You stare at your warped reflection.");
         Prop locker = new Prop("locker", "A dented metal locker, its paint peeling and a nameplate long scratched off.", () -> "You need some sort of key to open it.");
         locker.setOnUse((item) -> {
             if (item.getName().equals("key")) {
-                barrack.addItem(new Item("locker_note", "Text here", 0));
+                barrack.addItem(journal1);
                 locker.setOnInteract(() -> "The locker that you have unlocked a while ago.");
                 locker.setOnUse(used);
-                return "You've succesfully opened a locker";
+                return new UseResult("You've succesfully opened a locker", false);
             }
-            return "This doesn't fit into the lock.";
+            return new UseResult("This doesn't fit into the lock.", false);
         });
 
         Prop drawer = new Prop("oven_drawer", "A filthy oven drawer jammed halfway, something rattling inside.", () -> {
             kitchen.addItem(matches);
-            return "You yank it open with effort. You see a knife inside.";
+            return "You yank it open with effort. You see matches inside.";
         });
         Prop pans = new Prop("pans", "Rusted metal pans dangle from hooks, swaying gently despite no wind.", () -> "You accidentally knock one. The clang echoes.");
         Prop fridge = new Prop("fridge", "A bulky fridge covered in mold, humming faintly with a sickly odor seeping out.", () -> "You peek inside and quickly regret it.");
 
-        Prop box = new Prop("box", " A dusty cardboard box sitting just out of reach on a steel shelf.", () -> {
+        Prop box = new Prop("box", " A dusty cardboard box sitting just out of reach on a steel shelf.");
+        box.setOnInteract(() -> {
             storage.addItem(screwdriver);
+            storage.removeProp(box.getName());
             return "There is something inside the box.";
         });
+
         Prop crate = new Prop("stamps_crate", "A wooden crate marked with faded facility codes.", () -> "You try to pry it open but it's sealed tight.");
         Prop tools = new Prop("tools_pile", "A pile of rusted wrenches, bolts, and screws scattered across the floor.", () -> "You sift through them, but most are unusable.");
 
         Prop corkboard = new Prop("corkboard", "A bulletin board with pinned papers and faded reminders.", () -> "You flip through the notes.");
         Prop fillingCabinet = new Prop("filling_cabinet", "A tall cabinet with warped drawers stuffed with papers, some dated decades ago.", () -> "You yank one drawer and papers spill everywhere.");
-        Prop skeleton = new Prop("skeleton", "A decayed skeleton slumped on a chair, still dressed in a tattered leather jacket. The fabric is torn, but it looks like something's still intact.", () -> {
+        Prop skeleton = new Prop("skeleton", "A decayed skeleton slumped on a chair, still dressed in a tattered leather jacket. The fabric is torn, but it looks like something's still intact.");
+        skeleton.setOnInteract(() -> {
             office.addItem(cloth);
+            skeleton.setOnInteract(() -> "It's good that he has this jacket.");
             return "You tear off a piece of the jacket’s fabric—it comes away with a soft rip.";
         });
 
         Prop panelCables = new Prop("panel_cables", "Exposed cables that are sticking from the wall, sparking from time to time.", item -> {
             if (item.getName().equals("wire_cutters")) {
                 hallway.addItem(cable);
-                return "You cut the cables with a quick cut.";
+                return new UseResult("You cut the cables with a quick cut.", false);
             }
-            return "You can't cut the wires with that thing.";
+            return new UseResult("You can't cut the wires with that thing.", false);
         }, () -> "You have to cut them with something");
         Prop hallwayPanel = new Prop("loose_panel", "A rectangular section of wall with scuffed edges and mismatched screws. It looks like someone tried to put it back in a hurry.", () -> "If only you cold open it with something.");
         hallwayPanel.setOnUse(item -> {
             if (item.getName().equals("screwdriver")) {
                 hallway.addProp(panelCables);
                 hallway.removeProp(hallwayPanel.getName());
-                return "You unscrew the panel with effort, revealing the cables.";
+                return new UseResult("You unscrew the panel with effort, revealing the cables.", false);
             }
-            return "What did you think was going to happen?";
+            return new UseResult("What did you think was going to happen?", false);
         });
         Prop closet = new Prop("utility_door", "A locked door with a faded label. Smells faintly of chemicals.", () -> "It’s sealed tight—needs a key or override.");
 
         Prop irrigator = new Prop("irrigation_panel", "A rusted water control unit with blinking lights and jammed valves.", () -> "You flip a few switches. Nothing responds.");
         Prop soil = new Prop("loose_soil", "A patch of soil darker and softer than the rest, as if something was recently buried there. The nearby roots are parted slightly, as if disturbed.", () -> "Something is shining in the soil.");
+        soil.setOnUse((item) -> {
+            if (item.getName().equals("shovel")) {
+                greenhouse.addItem(bottle);
+                soil.setOnInteract(() -> "The soil lies scattered, a shallow pit where something once rested.");
+                return new UseResult("You've dig up a bottle", false);
+            }
+            return new UseResult("You can't use this to dig up a shiny object in a soil", false);
+        });
         Prop pot = new Prop("hanging_pot", "A cracked ceramic pot suspended from above by a fraying wire.");
         pot.setOnInteract(() -> {
-            greenhouse.removeItem(pot.getName());
+            greenhouse.removeProp(pot.getName());
             return "You tug it down gently—it falls and shatters.";
         });
 
@@ -144,77 +160,115 @@ public class GamePlan {
                 "There’s something inside the system. Or maybe we’re already inside it.\n" +
                 "If anyone reads this — do not plug in.\n" +
                 "Remember the sequence:\n" +
-                "__37____");
+                "__" + Password.password.charAt(2) + Password.password.charAt(3) + "____");
         openedPanel.setOnUse((item -> {
             if (item.getName().equals("sheathed_cable")) {
                 serverRoom.addProp(serverRack);
-                //TODO: Remove wires or mind up something else
-                return "By connecting the contacts, you turned on the light somewhere nearby.";
+                openedPanel.setOnInteract(() -> "The connections hum quietly. The panel feels warm to the touch — operational.");
+                openedPanel.setOnUse(used);
+                return new UseResult("By connecting the contacts, you powered the server room.", true);
             }
-            return "It's better to stop experimenting with electricity.";
+            return new UseResult("It's better to stop experimenting with electricity.", false);
         }));
         Prop enginePanel = new Prop("wall_panel", "A removable side panel secured with old screws. Faint labels hint at internal circuitry.");
         enginePanel.setOnUse(item -> {
             if (item.getName().equals("screwdriver")) {
                 engineRoom.addProp(openedPanel);
                 engineRoom.removeItem(enginePanel.getName());
+                return new UseResult("You opened the panel with your screwdriver. What a handy tool!", false);
             }
-            return "This won't help";
+            return new UseResult("This won't help", false);
         });
 
         Prop radio = new Prop("radio_unit", "A bulky, military-grade radio, knobs worn smooth by anxious hands.", () -> "You twist the dial through static until a voice crackles in: \"If you're hearing this, it’s already too late.\"");
         Prop toolbox = new Prop("toolbox", "A dented red toolbox, half-buried in snowdrift seeping through the broken windo", () -> {
             outpost.addItem(tape);
-            return "You open it. Inside, a tape rests, untouched for years.";
+            return "You open it. Inside lies a tape , untouched for years.";
         });
-        Prop walkie = new Prop("walie-talkie", "One half of a pair. A name is carved crudely into its side — 'Milo'.", () -> "You press the button. Silence... then static... then a voice: \"...don’t go to the lower levels...\"");
+        Prop walkie = new Prop("walkie-talkie", "One half of a pair. A name is carved crudely into its side — 'Milo'.", () -> "You press the button. Silence... then static... then a voice: \"...don’t go to the lower levels...\"");
+
+        Prop wall = new Prop("collapsed_wall", "Dust and gravel cover what looks like a tunnel behind the rubble.", () -> "Looks like the tunnel was blocked for a reason...");
+        Prop tablet = new Prop("stone_tablet", "Carved symbols pulse faintly when touched.", () -> "You feel a shiver down your spine. The stone is warm.");
+        Prop tombSkeleton = new Prop("skeleton", "Still propped against the wall. Something clenched in its fist.", () -> "Its fingers stiff around a corroded, rusted pistol. The weapon looks ancient and unusable.");
+
+        Prop hatch = new Prop("emergency_hatch", "Barely visible behind loose wiring. Could lead somewhere deeper...");
+        hatch.setOnInteract(() -> {
+            shaft.addItem(crowbar);
+            hatch.setOnInteract(() -> "An opened hatch, where you've found crowbar.");
+            return "You move aside the loose wiring and find a hidden compartment. Inside, a crowbar lies covered in dust.";
+        });
+        Prop ladder = new Prop("loose_ladder", "A broken, unstable ladder missing an entire leg. Too risky to use in its current state.", () -> "The ladder creaks dangerously. It's beyond repair — you'd better find another way.");
+        Prop cart = new Prop("mine_cart", "An old, rusted mine cart left abandoned. One wheel is broken, and a faint metallic smell lingers around it.", () -> " It groans under the slightest touch but won't budge. Whatever it carried is long gone.");
+
+        Prop samples = new Prop("sample_storage", "A line of dusty shelves filled with broken vials and shattered glass. One cracked container still faintly glows.", () -> "You reach out carefully. As your fingers graze the surface, the fragile vial crumbles into powder. Nothing usable remains.");
+        Prop chemTank = new Prop("chemical_tank", "Acid slowly leaks onto the floor, hissing and burning.", () -> "You could extract a little bit of the acid with some kind of vial.");
+        chemTank.setOnUse((item) -> {
+            if (item.getName().equals("bottle")) {
+                laboratory.addItem(acidBottle);
+                return new UseResult("You've filled the bottle with acid and left in on the counter", true);
+            }
+            return new UseResult("You can't pour the acid into this.", false);
+        });
+        Prop observation = new Prop("observation_window", "Looks into a sealed chamber. Something moved. Or did it?", () -> "The lights flicker when you press your hand to the glass.");
+
+        Prop weaponCase = new Prop("weapon_case", "Steel-plated and secured with a biometric lock.", () -> " It would be better to have a weapon. Hopefully, I'll find a biometric card somewhere around here...");
+        Prop ammoCrate = new Prop("ammo_crate", "Heavy and dusty. Faint rattle inside.");
+        ammoCrate.setOnInteract(() -> {
+            armory.addItem(new Item("pistol_ammo", "Could be useful for defending against threats.", 2));
+            armory.addItem(new Item("shotgun_ammo", "Could be useful for defending against threats.", 3));
+            ammoCrate.setOnInteract(() -> "You've already opened the crate, there is nothing more to do...");
+            return "You open it and find several intact rounds.";
+        });
+
+        Prop keypad = new Prop("keypad", "A grimy keypad, scratched and worn from years of use. Faint fingerprints linger on the most pressed buttons.", () -> {
+            System.out.println("Please, enter the code:");
+
+            Scanner scanner = new Scanner(System.in);
+            if (scanner.nextLine().equals(Password.password)) {
+                administration.getObstacles().remove("vault_door");
+                return "The keypad beeps in approval. Heavy mechanisms shift behind the steel as the vault door unlocks with a deep, resonant thud. You are finally free from this long forgotten maze...";
+            }
+
+            return "The password is wrong.";
+        });
+        Prop folders = new Prop("folder_stack", "A bundle of dusty folders, stamped repeatedly with a faded 'TOP SECRET' mark.", () -> "You sift through the brittle papers — fragments about Facility X surface, but the text is too degraded to fully decipher.");
 
         Obstacle fuseBox = new Obstacle("fuse_box",
                 "An old metal fuse box mounted to the wall. The cover hangs slightly ajar, and inside, one of the fuse slots is empty. Without it, the corridor remains dark and lifeless.",
                 (item) -> {
                     if (!item.getName().equals("fuse")) {
-                        return "You can't use this item on the fuse box.";
+                        return new UseResult("You can't use this item on the fuse box.", false);
                     }
                     kitchen.getObstacles().remove("fuse_box");
-
-                    return "You flipped the fuse. The hallway is now lit.";
+                    return new UseResult("You flipped the fuse. The hallway is now lit.", true);
                 }, hallway);
 
         Obstacle stuckDoor = new Obstacle("stuck_door", "The door is jammed and won't budge. Maybe a crowbar could help.", (item) -> {
             if (!item.getName().equals("crowbar")) {
-                return "You can't use this item to pry the door open.";
+                return new UseResult("You can't use this item to pry the door open.", false);
             }
             greenhouse.getObstacles().remove("stuck_door");
-            return "With a sharp creak and a burst of force, the crowbar pries the door loose. The way ahead is now open, though the hinges will never be the same.";
+            return new UseResult("With a sharp creak and a burst of force, the crowbar pries the door loose. The way ahead is now open, though the hinges will never be the same.", false);
         }, engineRoom);
 
         Obstacle overgrownPlants = new Obstacle("overgrown_plants", "Thick, overgrown plants block your way. They're too dense to move through.", (item) -> {
             if (!item.getName().equals("acid_bottle")) {
-                return "You can't use this item to burn the thick plants.";
+                return new UseResult("You can't use this item to burn the thick plants.", false);
             }
             outpost.getObstacles().remove("overgrown_plants");
-            return "You pour the corrosive mix onto the thick vines. They hiss and writhe before dissolving into a foul-smelling sludge. The path clears slowly, revealing the corridor beyond.";
+            return new UseResult("You pour the corrosive mix onto the thick vines. They hiss and writhe before dissolving into a foul-smelling sludge. The path clears slowly, revealing the corridor beyond.", true);
         }, catacombs);
 
         Obstacle fallenRocks = new Obstacle("fallen_rocks", "A pile of large fallen rocks is blocking the path to the shafts.",
                 (item) -> {
                     if (!item.getName().equals("primed_explosive")) {
-                        return "You can't use this item on pile of rocks... It won't do much to it...";
+                        return new UseResult("You can't use this item on pile of rocks... It won't do much to it...", false);
                     }
                     outpost.getObstacles().remove("fallen_rocks");
-                    return "You strike a match and light the fuse. You step back. A deep rumble follows... BOOM. The passage is clear.";
+                    return new UseResult("You strike a match and light the fuse. You step back. A deep rumble follows... BOOM. The passage is clear.", true);
                 }, shaft);
-        Obstacle vaultDoor = new Obstacle("vault_door", "A massive vault door bars your way. There's a numeric keypad next to it.", (item) -> {
-            System.out.println("Please, enter the code:");
-
-            Scanner scanner = new Scanner(System.in);
-            if (scanner.nextLine().equals("1234")) {
-                administration.getObstacles().remove("stuck_door");
-                return "The keypad beeps in approval. Heavy mechanisms shift behind the steel as the vault door unlocks with a deep, resonant thud. You are finally free from this long forgotten maze...";
-            }
-
-            return "The password is wrong.";
-        }, exitRoom);
+        Obstacle vaultDoor = new Obstacle("vault_door", "A massive vault door bars your way. There's a numeric keypad next to it.", (item) -> new UseResult("You can't use this item on the vault door.", false)
+                , exitRoom);
 
         // přiřazují se průchody mezi prostory (sousedící prostory)
         barrack.setExit(kitchen);
@@ -222,6 +276,7 @@ public class GamePlan {
         barrack.addProp(mirror);
         barrack.addProp(locker);
         barrack.addItem(needle);
+
         kitchen.setExit(barrack);
         kitchen.addItem(smallKey);
         kitchen.addProp(pans);
@@ -230,20 +285,24 @@ public class GamePlan {
         kitchen.setExit(storage);
         kitchen.setExit(hallway);
         kitchen.addObstacle(fuseBox);
+
         storage.setExit(kitchen);
         storage.setExit(office);
         storage.addItem(fuse);
         storage.addProp(box);
         storage.addProp(crate);
         storage.addProp(tools);
+
         office.setExit(storage);
         office.addProp(fillingCabinet);
         office.addProp(corkboard);
         office.addProp(skeleton);
+
         hallway.setExit(kitchen);
         hallway.setExit(greenhouse);
         hallway.addProp(hallwayPanel);
         hallway.addProp(closet);
+
         greenhouse.setExit(hallway);
         greenhouse.setExit(engineRoom);
         greenhouse.setExit(outpost);
@@ -252,17 +311,23 @@ public class GamePlan {
         greenhouse.addProp(pot);
         greenhouse.addProp(soil);
         greenhouse.addItem(shovel);
+
         engineRoom.setExit(greenhouse);
         engineRoom.setExit(serverRoom);
         engineRoom.addItem(cutters);
         engineRoom.addProp(enginePanel);
         engineRoom.addProp(console);
         engineRoom.addProp(core);
+
         serverRoom.setExit(engineRoom);
         serverRoom.setExit(administration);
+
         administration.setExit(serverRoom);
         administration.setExit(exitRoom);
         administration.addObstacle(vaultDoor);
+        administration.addProp(keypad);
+        administration.addProp(folders);
+
         outpost.setExit(greenhouse);
         outpost.setExit(catacombs);
         outpost.setExit(shaft);
@@ -272,14 +337,30 @@ public class GamePlan {
         outpost.addProp(walkie);
         outpost.addProp(radio);
         outpost.addProp(toolbox);
+
         catacombs.setExit(outpost);
+        catacombs.addItem(catacmobsNote);
+        catacombs.addProp(tombSkeleton);
+        catacombs.addProp(tablet);
+        catacombs.addProp(wall);
+
         shaft.setExit(outpost);
-        shaft.addItem(crowbar);
+        shaft.addProp(hatch);
+        shaft.addProp(cart);
+        shaft.addProp(ladder);
+
         laboratory.setExit(outpost);
         laboratory.setExit(armory);
-        laboratory.addItem(acid);
+        laboratory.addItem(journal2);
+        laboratory.addProp(chemTank);
+        laboratory.addProp(samples);
+        laboratory.addProp(observation);
+
         armory.setExit(laboratory);
+        armory.addProp(ammoCrate);
+        armory.addProp(weaponCase);
         armory.addItem(dynamite);
+
         currentRoom = barrack;
     }
 

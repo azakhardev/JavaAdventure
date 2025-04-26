@@ -34,13 +34,13 @@ public class CommandUse implements ICommand {
             return "There is no such entity in the room. Use command look_around to see entities in the room.";
         }
 
-        String result = item.useItem(prop);
+        UseResult result = item.useItem(prop);
 
-        if (!result.contains("can't") && (prop instanceof Obstacle)) {
+        if (result.shouldRemoveItem()) {
             backpack.deleteItem(item);
         }
 
-        return result;
+        return result.getMessage();
     }
 
     @Override

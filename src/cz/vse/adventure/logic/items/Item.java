@@ -1,5 +1,6 @@
 package cz.vse.adventure.logic.items;
 
+import cz.vse.adventure.logic.commands.UseResult;
 import cz.vse.adventure.logic.entities.Prop;
 
 public class Item {
@@ -31,7 +32,7 @@ public class Item {
         return this.lootable;
     }
 
-    public String useItem(Prop prop) {
+    public UseResult useItem(Prop prop) {
         return prop.applyItem(this);
 
     }

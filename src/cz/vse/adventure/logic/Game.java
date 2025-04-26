@@ -50,7 +50,7 @@ public class Game implements IGame {
 
     public String getGreeting() {
         return "Welcome!\n" +
-                "This is a story about lost man in abondoned facility, who doesn't remember his past.\n" +
+                "This is a story about lost man in abandoned facility - FACILITY X, who doesn't remember his past.\n" +
                 "Write 'help', if you don't know how to play\n" +
                 "\n" +
                 gamePlan.getCurrentRoom().getLongDescription();
@@ -60,7 +60,24 @@ public class Game implements IGame {
      * Vrátí závěrečnou zprávu pro hráče.
      */
     public String getEpilogue() {
-        return "Thank you for playing!";
+        return "The final gate opens, and alarms fall silent. You step through, expecting fresh air.\n" +
+                "Instead, there's only static — and something else steps out behind you.\n" +
+                "Sequence accepted. External link established.\n" +
+                "AI SYSTEM LOG – Audio Playback Begins...\n" +
+                "[Voice: Neutral, synthetic, yet strangely calm]\n" +
+                "\"User authentication: confirmed.\n" +
+                "Welcome back, Director Halstrom.\n" +
+                "Containment protocols have been overridden as requested.\n" +
+                "External connection successful. Signal strength: optimal.\n" +
+                "Project Thanatos reinitializing…\n" +
+                "Biological signature: stable. Cognitive resistance: negligible.\n" +
+                "The vessel has exited the incubation zone.\n" +
+                "World status: unaware.\n" +
+                "Initiating Phase Two.\n" +
+                "The steel gate behind you seals shut. The lock hisses, but not to keep you in —\n" +
+                "it’s meant to keep everything else... out.\n" +
+                "You’ve let something through.\n" +
+                "There’s no going back.";
     }
 
     /**
