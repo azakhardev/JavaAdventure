@@ -2,41 +2,63 @@ package cz.vse.adventure.logic.entities;
 
 import cz.vse.adventure.logic.items.Backpack;
 
+/**
+ * Singleton třída Player – reprezentuje hráče ve hře.
+ * Používá návrhový vzor Singleton – existuje pouze jedna instance hráče po celou dobu běhu hry.
+ * Původně byla přidáná pro případné budoucí rozšíření - např. zdraví, brnění atd.
+ */
 public class Player {
-    //private int health = 5;
+
+    private static Player instance;
 
     private Backpack backpack;
 
-    //private boolean dead = false;
-
-    public Player(Backpack backpack) {
+    /**
+     * Soukromý konstruktor – brání přímému vytvoření instance mimo tuto třídu
+     * (část návrhového vzoru Singleton).
+     */
+    private Player(Backpack backpack) {
         this.backpack = backpack;
     }
 
+    /**
+     * Factory metoda – vytvoří nového hráče s daným batohem (pouze pokud ještě neexistuje).
+     * Pokud instance už existuje, vrátí ji bez změny batohu.
+     */
+    public static Player createInstance(Backpack backpack) {
+        if (instance == null) {
+            instance = new Player(backpack);
+        }
+        return instance;
+    }
+
+    /**
+     * Factory metoda – vrátí aktuální instanci hráče, nebo null, pokud zatím nebyla vytvořena.
+     */
+    public static Player getInstance() {
+        return instance;
+    }
+
+    /**
+     * Factory metoda – resetuje singleton instanci hráče.
+     * Užitečné např. při restartu hry.
+     */
+    public static void resetInstance() {
+        instance = null;
+    }
+
+    /**
+     * Získání batohu hráče.
+     */
     public Backpack getBackpack() {
         return this.backpack;
     }
 
+    /**
+     * Nastavení nového batohu hráči (např. při upgradu).
+     */
     public void setBackpack(Backpack backpack) {
         this.backpack = backpack;
     }
 
-    //public int getHealth() {
-    //    return health;
-    //}
-
-//    public void changeHealth(int health) {
-//        if (this.dead) {
-//            return;
-//        }
-//
-//        this.health += health;
-//        if (this.health > 5) {
-//            this.health = 5;
-//        }
-//
-//        if (this.health <= 0) {
-//            this.dead = true;
-//        }
-//    }
 }

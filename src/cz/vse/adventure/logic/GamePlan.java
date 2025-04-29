@@ -54,14 +54,11 @@ public class GamePlan {
 
         Item fuse = new Item("fuse", "A small, cylindrical piece of metal with a glass window at the center. It looks like something that would restore power to the electrical systems, perhaps to the lights or machinery.", 2);
         Item crowbar = new Item("crowbar", "A heavy-duty metal tool with a curved, flattened end. It looks worn from use, but still strong enough to pry open doors, crates, or anything that’s stubbornly stuck.", 4);
-        //Item acid = new Item("acid", "A small bottle of highly corrosive liquid, with a faint greenish glow. It hisses whenever disturbed, a dangerous substance capable of eating through organic matter with ease.", 2);
         Item dynamite = new Item("dynamite", "A bundle of explosive sticks wrapped in paper, with a fuse sticking out. The unmistakable smell of gunpowder lingers around it. A sure way to clear any large obstructions—if you’re brave enough to use it.", 3);
         Item needle = new Item("needle", "A slender, slightly bent sewing needle. Still sharp enough to stitch something together—if you have thread or cloth.", 1);
         Item smallKey = new Item("key", "A tiny brass key, old and tarnished, but sturdy. It seems to fit a very specific lock — perhaps a drawer or cabinet that’s holding something valuable.", 1);
         Item screwdriver = new Item("screwdriver", "Flathead tool. Can remove panels or open crates.", 2);
         Item matches = new Item("matches", "A small box of matches, their tips dark and ready to strike. They’re useful for lighting candles, lamps, or anything that has to be lit.", 1);
-        //Item wrench = new Item("wrench", "An old wrench, covered in rust and grime. The handle is worn from years of use, but the wrench’s solid, heavy build makes it perfect for fixing or dismantling old machinery.", 3);
-        //Item plant = new Item("plant", "A small vial containing a strange plant sample. Its leaves are thick and waxy, and it has an unnatural glow when examined closely. Could it be the key to unlocking something else in the environment", 1);
         Item acidBottle = new Item("acid_bottle", "A carefully filled glass bottle, now holding a dangerous acid. Handle with caution.", 3);
         Item journal1 = new Item("journal_page1", "Day 3. The AI has started showing... anomalies. Small errors at first. Voices from the intercom. I thought I was imagining things until tonight. The terminal displayed a warning code: ____" + Password.password.charAt(4) + Password.password.charAt(5) + "__.", 0);
         Item journal2 = new Item("journal_page2", "Day 7. Security overridden itself. The doors lock us in at night. We pray it’s just glitches. My access code was forcibly changed to " + Password.password.charAt(0) + Password.password.charAt(1) + " without my input. I don't feel safe anymore.", 0);

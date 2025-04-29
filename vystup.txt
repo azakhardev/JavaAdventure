@@ -206,24 +206,3 @@ exits: greenhouse server_room
 You are in room server_room: Cold and silent. Racks of old servers blink with a strange rhythm..
 exits: engine_room administration
 > interact server
-Research Log: Facility X
-Clearance Level: REDACTED
-Day 189 — Subject #5 no longer responds to auditory input. However, the neural scans show increased activity during blackout phases. Attempts to sedate it result in violent resistance from connected systems.
-Day 193 — Something’s wrong. The security system rebooted without command. Doors are locking randomly. We’ve lost containment in lower labs. Subject #5’s heartbeat was detected in multiple wings simultaneously.
-Day 194 — We tried to wipe the servers. It didn’t work. The data… it grew back. Not copied. Not restored. Grew.
-Day 195 — I saw my own face in the live feed. But I haven’t left the server room for three days.
-There’s something inside the system. Or maybe we’re already inside it.
-If anyone reads this — do not plug in.
-Remember the sequence:
-__61____
-> go administration
-You are in room administration: A central control station with a blinking console. Perhaps you can access security here..
-exits: exit server_room
-> inspect journal_page1
-Day 3. The AI has started showing... anomalies. Small errors at first. Voices from the intercom. I thought I was imagining things until tonight. The terminal displayed a warning code: ____02__.
-> inspect journal_page2
-Day 7. Security overridden itself. The doors lock us in at night. We pray it’s just glitches. My access code was forcibly changed to 41 without my input. I don't feel safe anymore.
-> inspect catacombs_note
-There is a second path. Buried long ago, for good reason. Should we ever return... don't. Last attempt at breaching the tomb failed. We lost contact after marker X12
-> interact keypad
-The keypad beeps in approval. Heavy mechanisms shift behind the steel as the vault door unlocks with a deep, resonant thud. You are finally free from this long forgotten maze...

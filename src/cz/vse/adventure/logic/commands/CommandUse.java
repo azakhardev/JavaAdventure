@@ -6,17 +6,35 @@ import cz.vse.adventure.logic.entities.Prop;
 import cz.vse.adventure.logic.items.Backpack;
 import cz.vse.adventure.logic.items.Item;
 
+/**
+ * Třída CommandUse implementuje příkaz "use", který umožňuje
+ * hráči použít předmět z batohu na nějaký objekt (entitu) v aktuální místnosti.
+ */
 public class CommandUse implements ICommand {
 
     private static final String NAME = "use";
     private GamePlan plan;
     private Backpack backpack;
 
+    /**
+     * Konstruktor nastavuje herní plán a batoh hráče,
+     * který slouží ke kontrole dostupných předmětů.
+     *
+     * @param plan     herní plán, který uchovává aktuální místnost
+     * @param backpack batoh hráče s předměty
+     */
     public CommandUse(GamePlan plan, Backpack backpack) {
         this.plan = plan;
         this.backpack = backpack;
     }
 
+    /**
+     * Metoda vykoná příkaz "use", který použije zvolený předmět
+     * na vybranou entitu v místnosti.
+     *
+     * @param params dva parametry: název předmětu a název entity
+     * @return zpráva o výsledku akce
+     */
     @Override
     public String executeCommand(String... params) {
         if (params.length != 2) {

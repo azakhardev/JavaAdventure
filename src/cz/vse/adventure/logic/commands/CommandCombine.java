@@ -5,15 +5,32 @@ import cz.vse.adventure.logic.items.Item;
 
 import java.util.Arrays;
 
+/**
+ * Třída představuje příkaz "combine", který umožňuje hráči kombinovat dva předměty z batohu
+ * a vytvořit z nich nový předmět, případně rozšířit kapacitu batohu.
+ */
 public class CommandCombine implements ICommand {
 
     private final static String NAME = "combine";
     private final Backpack backpack;
 
+    /**
+     * Konstruktor třídy, přiřadí batoh hráče, se kterým bude příkaz pracovat.
+     *
+     * @param backpack instance batohu hráče
+     */
     public CommandCombine(Backpack backpack) {
         this.backpack = backpack;
     }
 
+    /**
+     * Metoda provádí příkaz "combine". Ověří, zda hráč zadal dva existující předměty,
+     * a pokud ano, pokusí se je spojit do nového předmětu podle předdefinovaných kombinací.
+     * V případě úspěchu odstraní původní předměty a uloží nový, nebo upraví vlastnosti batohu.
+     *
+     * @param params názvy dvou předmětů, které chce hráč zkombinovat
+     * @return zpráva o výsledku pokusu o kombinaci
+     */
     @Override
     public String executeCommand(String... params) {
         if (params.length != 2) {
@@ -57,6 +74,11 @@ public class CommandCombine implements ICommand {
         return "You can't combine those items.";
     }
 
+    /**
+     * Metoda vrací název příkazu (slovo které používá hráč pro jeho vyvolání)
+     *
+     * @return nazev prikazu
+     */
     @Override
     public String getName() {
         return NAME;

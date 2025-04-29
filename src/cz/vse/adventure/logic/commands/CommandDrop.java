@@ -2,21 +2,37 @@ package cz.vse.adventure.logic.commands;
 
 import cz.vse.adventure.logic.GamePlan;
 import cz.vse.adventure.logic.Room;
-import cz.vse.adventure.logic.entities.Player;
 import cz.vse.adventure.logic.items.Backpack;
 import cz.vse.adventure.logic.items.Item;
 
+/**
+ * Třída představuje příkaz "drop", který umožňuje hráči odhodit předmět
+ * z batohu do aktuální místnosti.
+ */
 public class CommandDrop implements ICommand {
 
     private final static String NAME = "drop";
     private final GamePlan gamePlan;
     private final Backpack backpack;
 
+    /**
+     * Konstruktor třídy, nastaví plán hry a batoh, se kterým příkaz pracuje.
+     *
+     * @param gamePlan instance plánu hry
+     * @param backpack instance batohu hráče
+     */
     public CommandDrop(GamePlan gamePlan, Backpack backpack) {
         this.gamePlan = gamePlan;
         this.backpack = backpack;
     }
 
+    /**
+     * Metoda provádí příkaz "drop". Pokusí se odebrat předmět z batohu
+     * a přidat ho do aktuální místnosti.
+     *
+     * @param params jeden parametr — název předmětu, který chce hráč odhodit
+     * @return zpráva o úspěšném odhození předmětu, nebo chybová hláška
+     */
     @Override
     public String executeCommand(String... params) {
 
@@ -34,6 +50,11 @@ public class CommandDrop implements ICommand {
         return this.backpack.dropItem(item, currentRoom);
     }
 
+    /**
+     * Vrací název příkazu, který hráč používá k jeho vyvolání ("drop").
+     *
+     * @return název příkazu
+     */
     @Override
     public String getName() {
         return NAME;

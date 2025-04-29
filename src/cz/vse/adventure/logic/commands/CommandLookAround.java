@@ -6,15 +6,34 @@ import cz.vse.adventure.logic.entities.Prop;
 import cz.vse.adventure.logic.entities.Obstacle;
 import cz.vse.adventure.logic.items.Item;
 
+/**
+ * Třída reprezentuje příkaz "look_around", který hráči umožní
+ * rozhlédnout se po aktuální místnosti a zjistit, jaké překážky,
+ * předměty a objekty se v ní nacházejí.
+ */
 public class CommandLookAround implements ICommand {
 
     private final static String NAME = "look_around";
     private final GamePlan plan;
 
+    /**
+     * Konstruktor třídy nastaví herní plán, ze kterého bude
+     * brát informace o aktuální místnosti.
+     *
+     * @param plan herní plán hry
+     */
     public CommandLookAround(GamePlan plan) {
         this.plan = plan;
     }
 
+    /**
+     * Metoda provádí příkaz "look_around". Vypíše všechny překážky,
+     * předměty a objekty v aktuální místnosti, pokud nějaké existují.
+     * Příkaz nepřijímá žádné parametry.
+     *
+     * @param params tento příkaz nepřijímá žádné parametry
+     * @return textový popis toho, co hráč v místnosti vidí
+     */
     @Override
     public String executeCommand(String... params) {
 
@@ -59,6 +78,11 @@ public class CommandLookAround implements ICommand {
                 + obstacles + items + props;
     }
 
+    /**
+     * Vrací název příkazu, který hráč používá k jeho vyvolání ("look_around").
+     *
+     * @return název příkazu
+     */
     @Override
     public String getName() {
         return NAME;
