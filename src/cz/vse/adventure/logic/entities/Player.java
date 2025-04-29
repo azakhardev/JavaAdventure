@@ -3,7 +3,7 @@ package cz.vse.adventure.logic.entities;
 import cz.vse.adventure.logic.items.Backpack;
 
 /**
- * Singleton třída Player – reprezentuje hráče ve hře.
+ * Singleton třída Player (DU) – reprezentuje hráče ve hře.
  * Používá návrhový vzor Singleton – existuje pouze jedna instance hráče po celou dobu běhu hry.
  * Původně byla přidáná pro případné budoucí rozšíření - např. zdraví, brnění atd.
  */

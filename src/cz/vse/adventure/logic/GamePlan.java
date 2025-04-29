@@ -5,6 +5,7 @@ import cz.vse.adventure.logic.commands.UseResult;
 import cz.vse.adventure.logic.entities.Obstacle;
 import cz.vse.adventure.logic.entities.Prop;
 import cz.vse.adventure.logic.items.Item;
+import cz.vse.adventure.logic.items.ItemFactory;
 
 import java.util.Scanner;
 import java.util.function.Function;
@@ -52,23 +53,23 @@ public class GamePlan {
         Room armory = new Room("armory", " Locked cases and weapon racks. It's unfortunate that you don't have keys for them...");
         Room exitRoom = new Room("exit", "You are at exit - type end to end the game and exit the facility.");
 
-        Item fuse = new Item("fuse", "A small, cylindrical piece of metal with a glass window at the center. It looks like something that would restore power to the electrical systems, perhaps to the lights or machinery.", 2);
-        Item crowbar = new Item("crowbar", "A heavy-duty metal tool with a curved, flattened end. It looks worn from use, but still strong enough to pry open doors, crates, or anything that’s stubbornly stuck.", 4);
-        Item dynamite = new Item("dynamite", "A bundle of explosive sticks wrapped in paper, with a fuse sticking out. The unmistakable smell of gunpowder lingers around it. A sure way to clear any large obstructions—if you’re brave enough to use it.", 3);
-        Item needle = new Item("needle", "A slender, slightly bent sewing needle. Still sharp enough to stitch something together—if you have thread or cloth.", 1);
-        Item smallKey = new Item("key", "A tiny brass key, old and tarnished, but sturdy. It seems to fit a very specific lock — perhaps a drawer or cabinet that’s holding something valuable.", 1);
-        Item screwdriver = new Item("screwdriver", "Flathead tool. Can remove panels or open crates.", 2);
-        Item matches = new Item("matches", "A small box of matches, their tips dark and ready to strike. They’re useful for lighting candles, lamps, or anything that has to be lit.", 1);
-        Item acidBottle = new Item("acid_bottle", "A carefully filled glass bottle, now holding a dangerous acid. Handle with caution.", 3);
-        Item journal1 = new Item("journal_page1", "Day 3. The AI has started showing... anomalies. Small errors at first. Voices from the intercom. I thought I was imagining things until tonight. The terminal displayed a warning code: ____" + Password.password.charAt(4) + Password.password.charAt(5) + "__.", 0);
-        Item journal2 = new Item("journal_page2", "Day 7. Security overridden itself. The doors lock us in at night. We pray it’s just glitches. My access code was forcibly changed to " + Password.password.charAt(0) + Password.password.charAt(1) + " without my input. I don't feel safe anymore.", 0);
-        Item catacmobsNote = new Item("catacombs_note", "There is a second path. Buried long ago, for good reason. Should we ever return... don't. Last attempt at breaching the tomb failed. We lost contact after marker X" + Password.password.charAt(6) + Password.password.charAt(7), 0);
-        Item shovel = new Item("shovel", "A rusty, heavy shovel with a worn wooden handle. The metal is chipped from years of digging, but it’s still sharp enough to dig through loose soil or break through debris.", 5);
-        Item tape = new Item("tape", "A roll of thick, sticky tape. It looks like it could fix broken cables, seams, or even secure loose items together. There’s an odd residue on the sticky side, making it seem like it has seen better days.", 2);
-        Item bottle = new Item("bottle", "A small glass bottle, its edges smooth and clear. It’s empty now, but could easily hold liquid. It’s perfect for transporting the dangerous acid without spilling it.", 3);
-        Item cutters = new Item("wire_cutters", "A pair of wire cutters, with sharp, rusted edges. The handles are scuffed from years of use, but the tool is still functional and could easily snip through thick cables or wires.", 3);
-        Item cloth = new Item("cloth", "A torn piece of durable fabric, maybe from an old lab coat or curtain. Could be useful for patching or crafting.", 1);
-        Item cable = new Item("broken_cable", "A snapped power cable with frayed wires at both ends. Sparks occasionally flicker from the exposed metal.", 2);
+        Item fuse = ItemFactory.createItem(ItemFactory.ItemName.FUSE);
+        Item crowbar = ItemFactory.createItem(ItemFactory.ItemName.CROWBAR);
+        Item dynamite = ItemFactory.createItem(ItemFactory.ItemName.DYNAMITE);
+        Item needle = ItemFactory.createItem(ItemFactory.ItemName.NEEDLE);
+        Item smallKey = ItemFactory.createItem(ItemFactory.ItemName.KEY);
+        Item screwdriver = ItemFactory.createItem(ItemFactory.ItemName.SCREWDRIVER);
+        Item matches = ItemFactory.createItem(ItemFactory.ItemName.MATCHES);
+        Item acidBottle = ItemFactory.createItem(ItemFactory.ItemName.ACID_BOTTLE);
+        Item journal1 = ItemFactory.createItem(ItemFactory.ItemName.JOURNAL_PAGE1);
+        Item journal2 = ItemFactory.createItem(ItemFactory.ItemName.JOURNAL_PAGE2);
+        Item catacombsNote = ItemFactory.createItem(ItemFactory.ItemName.CATACOMBS_NOTE);
+        Item shovel = ItemFactory.createItem(ItemFactory.ItemName.SHOVEL);
+        Item tape = ItemFactory.createItem(ItemFactory.ItemName.TAPE);
+        Item bottle = ItemFactory.createItem(ItemFactory.ItemName.BOTTLE);
+        Item cutters = ItemFactory.createItem(ItemFactory.ItemName.WIRE_CUTTERS);
+        Item cloth = ItemFactory.createItem(ItemFactory.ItemName.CLOTH);
+        Item cable = ItemFactory.createItem(ItemFactory.ItemName.BROKEN_CABLE);
 
         Function<Item, UseResult> used = (item) -> new UseResult("You have already used an item on this object", false);
 
@@ -336,7 +337,7 @@ public class GamePlan {
         outpost.addProp(toolbox);
 
         catacombs.setExit(outpost);
-        catacombs.addItem(catacmobsNote);
+        catacombs.addItem(catacombsNote);
         catacombs.addProp(tombSkeleton);
         catacombs.addProp(tablet);
         catacombs.addProp(wall);
