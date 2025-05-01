@@ -14,7 +14,7 @@ Fakulta informatiky a statistiky
 
 ### Verze:
 
-**0.5**
+**0.9**
 
 ## Poznámky k projektu
 
