@@ -53,14 +53,14 @@ public class GameTest {
      */
     @Test
     public void testPrubehHry() {
-        assertEquals("domeček", game1.getGamePlan().getCurrentRoom().getName());
-        game1.processCommand("jdi les");
+        assertEquals("barrack", game1.getGamePlan().getCurrentRoom().getName());
+        game1.processCommand("go kitchen");
         assertEquals(false, game1.isGameEnded());
-        assertEquals("les", game1.getGamePlan().getCurrentRoom().getName());
-        game1.processCommand("jdi hluboký_les");
+        assertEquals("kitchen", game1.getGamePlan().getCurrentRoom().getName());
+        game1.processCommand("go storage");
         assertEquals(false, game1.isGameEnded());
-        assertEquals("hluboký_les", game1.getGamePlan().getCurrentRoom().getName());
-        game1.processCommand("konec");
+        assertEquals("storage", game1.getGamePlan().getCurrentRoom().getName());
+        game1.processCommand("end");
         assertEquals(true, game1.isGameEnded());
     }
 }
