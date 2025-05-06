@@ -12,8 +12,8 @@ import cz.vse.adventure.logic.items.Backpack;
  * Vypisuje uvítací a ukončovací text hry.
  * Také vyhodnocuje jednotlivé příkazy zadané uživatelem.
  *
- * @author Michael Kolling, Lubos Pavlicek, Jarmila Pavlickova
- * @version pro školní rok 2016/2017
+ * @author Michael Kolling, Lubos Pavlicek, Jarmila Pavlickova, Artem Zacahrčenko
+ * @version pro školní rok 2024/2025
  */
 
 public class Game implements IGame {

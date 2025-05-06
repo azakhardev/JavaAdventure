@@ -186,11 +186,11 @@ public class Room {
      * @return Popis východů - názvů sousedních prostorů
      */
     private String getExitsDescription() {
-        String vracenyText = "exits:";
+        String returnedText = "exits:";
         for (Room sousedni : exits) {
-            vracenyText += " " + sousedni.getName();
+            returnedText += " " + sousedni.getName();
         }
-        return vracenyText;
+        return returnedText;
     }
 
     /**
@@ -198,19 +198,19 @@ public class Room {
      * jako parametr. Pokud prostor s udaným jménem nesousedí s aktuálním
      * prostorem, vrací se hodnota null.
      *
-     * @param nazevSouseda Jméno sousedního prostoru (východu)
+     * @param siblingName Jméno sousedního prostoru (východu)
      * @return Prostor, který se nachází za příslušným východem, nebo hodnota
      * null, pokud prostor zadaného jména není sousedem.
      */
-    public Room getSiblingRoom(String nazevSouseda) {
-        List<Room> hledaneProstory =
+    public Room getSiblingRoom(String siblingName) {
+        List<Room> lookupRooms =
                 exits.stream()
-                        .filter(sousedni -> sousedni.getName().equals(nazevSouseda))
+                        .filter(sousedni -> sousedni.getName().equals(siblingName))
                         .collect(Collectors.toList());
-        if (hledaneProstory.isEmpty()) {
+        if (lookupRooms.isEmpty()) {
             return null;
         } else {
-            return hledaneProstory.get(0);
+            return lookupRooms.get(0);
         }
     }
 
@@ -225,5 +225,9 @@ public class Room {
      */
     public Collection<Room> getExits() {
         return Collections.unmodifiableCollection(exits);
+    }
+
+    public void addEntity(Prop prop) {
+
     }
 }

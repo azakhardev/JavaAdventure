@@ -9,8 +9,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * Testovací třída ProstorTest slouží ke komplexnímu otestování
  * třídy Prostor
  *
- * @author Jarmila Pavlíčková
- * @version pro skolní rok 2016/2017
+ * @author Artem Zacharčenko
+ * @version pro skolní rok 2024/2025
  */
 public class RoomTest {
     //== Datové atributy (statické i instancí)======================================
