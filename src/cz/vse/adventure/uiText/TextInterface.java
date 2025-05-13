@@ -37,7 +37,7 @@ public class TextInterface {
         // základní cyklus programu - opakovaně se čtou příkazy a poté
         // se provádějí do konce hry.
 
-        playFromFile("speedrun.txt");
+        //playFromFile("speedrun.txt");
 
         while (!game.isGameEnded()) {
             String line = readString();

@@ -26,14 +26,14 @@ public class GamePlan {
     private Room currentRoom;
 
     /**
-     *
+     * Konstruktor, který při inicializaci spustí funkci pro nastavení místností.
      */
     public GamePlan() {
         setupRooms();
     }
 
     /**
-     *
+     * Příprava místností, jejich vzájemné propojení a naplnění místností itemy a objekty.
      */
     private void setupRooms() {
         // vytvářejí se jednotlivé prostory
@@ -53,6 +53,7 @@ public class GamePlan {
         Room armory = new Room("armory", " Locked cases and weapon racks. It's unfortunate that you don't have keys for them...");
         Room exitRoom = new Room("exit", "You are at exit - type end to end the game and exit the facility.");
 
+        //Vytváří se itemy
         Item fuse = ItemFactory.createItem(ItemFactory.ItemName.FUSE);
         Item crowbar = ItemFactory.createItem(ItemFactory.ItemName.CROWBAR);
         Item dynamite = ItemFactory.createItem(ItemFactory.ItemName.DYNAMITE);
@@ -73,6 +74,7 @@ public class GamePlan {
 
         Function<Item, UseResult> used = (item) -> new UseResult("You have already used an item on this object", false);
 
+        //Vytváří se herní objekty
         Prop toilet = new Prop("toilet_bowl", "Disgusting, but suspiciously clean inside", () -> "You reach in (gross), but you didn't find anything.");
         Prop mirror = new Prop("mirror", "A wall mirror, cracked down the middle, reflecting a distorted version of you.", () -> "You stare at your warped reflection.");
         Prop locker = new Prop("locker", "A dented metal locker, its paint peeling and a nameplate long scratched off.", () -> "You need some sort of key to open it.");
