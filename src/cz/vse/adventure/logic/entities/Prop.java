@@ -3,6 +3,7 @@ package cz.vse.adventure.logic.entities;
 import cz.vse.adventure.logic.commands.UseResult;
 import cz.vse.adventure.logic.items.Item;
 
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -28,6 +29,7 @@ public class Prop {
      * Výchozí chování je vrácení popisu objektu.
      */
     protected Supplier<String> onInteract = this::getDescription;
+
 
     /**
      * Konstruktor umožňující nastavit název, popis, reakci na použití předmětu a reakci na interakci.
@@ -100,5 +102,18 @@ public class Prop {
      */
     public UseResult applyItem(Item item) {
         return onUse.apply(item);
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Prop)) return false;
+        Prop prop = (Prop) o;
+        return Objects.equals(name, prop.name) &&
+                Objects.equals(description, prop.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, description);
     }
 }
