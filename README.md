@@ -25,3 +25,5 @@ Fakulta informatiky a statistiky
   `Entity`.
 - Předměty jsou reprezentovány pomocí třídy `Item`, konkrétní speciální předměty jako `Flashlight` pak dědí z ní.
 - Herní příkazy jsou zpracovány v balíčku `logic.commands`, kde každá třída implementuje rozhraní `ICommand`.
+
+Change
